@@ -1,0 +1,17 @@
+FROM ubuntu:18.04
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    # The following libraries are required for the IDE to be able to communicate with
+    # code-server through xserver messaging.
+    libxtst6 \
+    libxrender1 \
+    libfontconfig1 \
+    libxi6
+
+# Install intellij.
+RUN mkdir -p /opt/idea
+RUN curl -L https://download.jetbrains.com/idea/ideaIC-2019.3.3.tar.gz | tar -C /opt/idea --strip-components 1 -xzvf -
+
+# Add a desktop file entry for intellij.
+COPY intellij.desktop /usr/share/applications/intellij.desktop
