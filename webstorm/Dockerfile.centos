@@ -8,7 +8,8 @@ RUN yum update -y && yum install -y \
     libXtst \
     libXrender \
     fontconfig \
-    libXi
+    libXi \
+    gtk3
 
 # Install webstorm.
 RUN mkdir -p /opt/webstorm

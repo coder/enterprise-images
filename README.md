@@ -23,6 +23,7 @@ normally use when installing the IDE onto your local machine. Code-server is abl
 find and start the following IDEs if their binaries exist in your PATH:
 - intellij-idea-ultimate
 - intellij-idea-community
+- webstorm
 - eclipse
 - goland
 - pycharm
@@ -55,6 +56,7 @@ it will still require one when running it through code-server.
 ### What editors are known to work?
 - VSCode
 - IntelliJ IDEA Ultimate and Community editions
+- WebStorm
 - Eclipse - [GTK Based](#known-issues)
 - PyCharm
 - GoLand

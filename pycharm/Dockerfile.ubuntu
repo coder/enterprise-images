@@ -1,0 +1,18 @@
+FROM ubuntu:18.04
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    # The following libraries are required for the IDE to be able to communicate with
+    # code-server through xserver messaging.
+    libxtst6 \
+    libxrender1 \
+    libfontconfig1 \
+    libxi6 \
+    libgtk-3-0
+
+# Install pycharm.
+RUN mkdir -p /opt/pycharm
+RUN curl -L https://download.jetbrains.com/python/pycharm-community-2019.3.4.tar.gz | tar -C /opt/pycharm --strip-components 1 -xzvf -
+
+# Add a binary to the PATH that points to the pycharm startup script.
+RUN ln -s /opt/pycharm/bin/pycharm.sh /usr/bin/pycharm

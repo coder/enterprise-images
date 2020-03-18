@@ -1,7 +1,0 @@
-[Desktop Entry]
-Version=2019.3.3
-Type=Application
-Terminal=false
-Name=IntelliJ
-Icon=/opt/idea/bin/idea.png
-Exec=/opt/idea/bin/idea.sh
