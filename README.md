@@ -35,24 +35,6 @@ find and start the following IDEs if their binaries exist in your PATH:
 - monodevelop
 - emacs
 
-For a cleaner experience, a [.desktop]() entry can be added into your
-`/usr/share/applications` to make the IDE discoverable by code-server. Adding the `.desktop`
-entry will render the applications Logo and name on the code-server dashboard.
-
-### Desktop File
-The `.desktop` file gives code-server information about the IDE such as the name,
-where to find the logo to display, and what command to run to start the application.
-The following table contains the `.desktop` file fields that are required and recognized
-by code-server. If the required fields aren't set in your `.desktop` file, the IDE won't
-be discoverable by code-server.
-
-| Field  | Description  | Required / Optional  |
-|---|---|---|
-| Name  | The name you would like to use for your application | Required  |
-| Type  | This must be set to `Application` for code-server to render it  | Required  |
-| Logo  | The path to the logo you'd like code-server to use for displaying your IDE  | Optional  |
-| Exec  | The path to the command that is used to start the IDE  | Required  |
-
 ### Required Packages
 The following packages are required in your image if you're using an IDE other than VSCode
 to ensure that it can communicate properly with code-server.

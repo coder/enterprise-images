@@ -14,5 +14,5 @@ RUN yum update -y && yum install -y \
 RUN mkdir -p /opt/idea
 RUN curl -L https://download.jetbrains.com/idea/ideaIC-2019.3.3.tar.gz | tar -C /opt/idea --strip-components 1 -xzvf -
 
-# Add a desktop file entry for intellij.
-COPY intellij.desktop /usr/share/applications/intellij.desktop
+# Add a binary to the PATH that points to the intellij startup script.
+RUN ln -s /opt/intellij/bin/intellij.sh /usr/bin/intellij-idea-ultimate
