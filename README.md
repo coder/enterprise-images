@@ -42,8 +42,9 @@ entry will render the applications Logo and name on the code-server dashboard.
 ### Desktop File
 The `.desktop` file gives code-server information about the IDE such as the name,
 where to find the logo to display, and what command to run to start the application.
-The following fields are required in the `.desktop` file for code-server to be able
-to discover and start your installed IDE:
+The following table contains the `.desktop` file fields that are required and recognized
+by code-server. If the required fields aren't set in your `.desktop` file, the IDE won't
+be discoverable by code-server.
 
 | Field  | Description  | Required / Optional  |
 |---|---|---|
