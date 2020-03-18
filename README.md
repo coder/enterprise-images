@@ -1,17 +1,19 @@
-# enterprise-docs
+# enterprise-images
 
 These docs contain examples and guides for how to setup your images to utilize
 the Multi Editor Support built into Coder Enterprise.
 
-The `images` directory contains many examples for how to setup your images
+Each directory contains examples for how to setup your images
 with different IDEs.
 
 ## Multi Editor Support
-Coder Enterprise has full support for a wide range of editors including VSCode
-Eclipse, the JetBrains suite, and many more. These editors are run in the remote
-environment and rendered directly in the browser. The updated multi editor support
-also provides fully integrated window management to give the application the look
-and feel of a native local application. This update provides the best of both
+*Multi Editor Support is currently in alpha, see [known issues](#known-issues) for more details.*
+
+Coder Enterprise has full support for a wide range of editors including VSCode,
+the JetBrains suite, Eclipse, and many more. These editors are run in the remote
+environment and rendered directly in the browser. The multi editor support is
+bundled with a window management system to give the application the look
+and feel of a native local application. This provides the best of both
 worlds -- the security and productivity of remote infrastructure with the native look
 and feel of the local machine.
 
@@ -70,7 +72,7 @@ it will still require one when running it through code-server.
 ### What editors are known to work?
 - VSCode
 - IntelliJ IDEA Ultimate and Community editions
-- Eclipse
+- Eclipse - [GTK Based](#known-issues)
 - PyCharm
 - GoLand
 - PhpStorm
@@ -91,3 +93,5 @@ state. We recommend minimizing the opens and closes of a single application unti
 to resolve this.
 - Resizing the application window too quickly can cause it to enter into an unexpected state.
 Please resize slowly to ensure things work as expected.
+- GTK based applications are not registering keyboard input successfully. We recommend using
+non GTK based IDEs until we can resolve this issue.
