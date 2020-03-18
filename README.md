@@ -1,4 +1,4 @@
-# coder-enterprise-docs
+# enterprise-docs
 
 These docs contain examples and guides for how to setup your images to utilize
 the Multi Editor Support built into Coder Enterprise.
@@ -60,6 +60,7 @@ to ensure that it can communicate properly with code-server.
 | libxrender1 | libXrender | X Rendering Extension Client Library |
 | libfontconfig1 | fontconfig | Generic Font Configuration Library |
 | libxi6 | libXi | X11 Input Extension Library |
+| libgtk-3-0 | gtk3 | GTK+ Graphical User Interface Library |
 
 ### How does IDE licensing work?
 Licensing for IDEs running via code-server are licensed in the same way that they are
@@ -88,3 +89,5 @@ we recommend using the built in VSCode IDE until we can resolve this issue.
 - Opening and closing an application many times can cause code-server to get into a broken
 state. We recommend minimizing the opens and closes of a single application until we’re able
 to resolve this.
+- Resizing the application window too quickly can cause it to enter into an unexpected state.
+Please resize slowly to ensure things work as expected.
