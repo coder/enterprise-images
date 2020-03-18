@@ -1,19 +1,19 @@
-# enterprise-docs
+# enterprise-images
 
 These docs contain examples and guides for how to setup your images to utilize
 the Multi Editor Support built into Coder Enterprise.
 
-The `images` directory contains many examples for how to setup your images
+Each directory contains examples for how to setup your images
 with different IDEs.
 
 ## Multi Editor Support
 *Multi Editor Support is currently in alpha, see [known issues](#known-issues) for more details.*
 
-Coder Enterprise has full support for a wide range of editors including VSCode
-Eclipse, the JetBrains suite, and many more. These editors are run in the remote
-environment and rendered directly in the browser. The updated multi editor support
-also provides fully integrated window management to give the application the look
-and feel of a native local application. This update provides the best of both
+Coder Enterprise has full support for a wide range of editors including VSCode,
+the JetBrains suite, Eclipse, and many more. These editors are run in the remote
+environment and rendered directly in the browser. The multi editor support is
+bundled with a window management system to give the application the look
+and feel of a native local application. This provides the best of both
 worlds -- the security and productivity of remote infrastructure with the native look
 and feel of the local machine.
 
