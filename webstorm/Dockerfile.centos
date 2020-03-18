@@ -14,5 +14,5 @@ RUN yum update -y && yum install -y \
 RUN mkdir -p /opt/webstorm
 RUN curl -L https://download.jetbrains.com/webstorm/WebStorm-2019.3.3.tar.gz | tar -C /opt/webstorm --strip-components 1 -xzvf -
 
-# Add a desktop file entry for webstorm.
-COPY webstorm.desktop /usr/share/applications/webstorm.desktop
+# Add a binary to the PATH that points to the webstorm startup script.
+RUN ln -s /opt/webstorm/bin/webstorm.sh /usr/bin/webstorm

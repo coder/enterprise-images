@@ -1,7 +1,0 @@
-[Desktop Entry]
-Version=2019.3.3
-Type=Application
-Terminal=false
-Name=GoLand
-Icon=/opt/goland/bin/goland.png
-Exec=/opt/goland/bin/goland.sh
