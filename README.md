@@ -38,11 +38,12 @@ find and start the following IDEs if their binaries exist in your PATH:
 - oni
 - monodevelop
 - emacs
+- jupyter
 
 ### Required Packages
 
-The following packages are required in your image if you're using an IDE other than VSCode
-to ensure that it can communicate properly with code-server.
+The following packages are required in your image if you're using an IDE other
+than VSCode or Jupyter to ensure proper communication with code-server.
 | Deb Package    | Rpm Package | Package Description                   |
 | -------------- | ----------- | ------------------------------------- |
 | openssl        | openssl     | Secure Sockets Layer Toolkit          |
@@ -75,6 +76,7 @@ it will still require one when running it through code-server.
 - Vim
 - Oni
 - MonoDevelop
+- Jupyter
 
 ### Known Issues
 
