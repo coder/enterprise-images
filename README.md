@@ -41,8 +41,10 @@ find and start the following IDEs if their binaries exist in your PATH:
 - jupyter
 
 ### Required Packages
+The `which` utility is required in your image in order for code-server to search
+for installed editors within your image.
 
-The following packages are required in your image if you're using an IDE other
+The following additional packages are required in your image if you're using an IDE other
 than VSCode or Jupyter to ensure proper communication with code-server.
 | Deb Package    | Rpm Package | Package Description                   |
 | -------------- | ----------- | ------------------------------------- |
