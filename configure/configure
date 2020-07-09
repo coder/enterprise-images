@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Configurations that depend on the $HOME directory
+
+## Install NVM, but only if it's not already installed
+if [ ! -d $HOME/.nvm ]; then
+  echo "Installing NVM"
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+else
+  echo "NVM is already installed"
+fi
