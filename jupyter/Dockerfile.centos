@@ -1,7 +1,20 @@
 FROM centos:8
 
 RUN yum update -y && yum install -y \
+    which \
+    git \
+    bash \
+    curl \
+    man \
+    vim \
+    sudo \
+    gnupg \
     python36
 
 # Install jupyter
 RUN pip3 install jupyterlab
+
+# Add a user `coder` so that you're not developing as the `root` user
+RUN adduser coder && \
+  echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
+USER coder
