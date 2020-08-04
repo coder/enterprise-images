@@ -1,7 +1,14 @@
 FROM centos:8
 
 RUN yum update -y && yum install -y \
+    which \
+    git \
+    bash \
     curl \
+    man \
+    vim \
+    sudo \
+    gnupg \
     # The following libraries are required for the IDE to be able to communicate with
     # code-server through xserver messaging.
     openssl \
@@ -9,11 +16,17 @@ RUN yum update -y && yum install -y \
     libXrender \
     fontconfig \
     libXi \
-    gtk3
+    gtk3 \
+    libGL
 
 # Install intellij.
 RUN mkdir -p /opt/idea
-RUN curl -L https://download.jetbrains.com/idea/ideaIC-2019.3.3.tar.gz | tar -C /opt/idea --strip-components 1 -xzvf -
+RUN curl -L "https://download.jetbrains.com/product?code=IIC&latest&distribution=linux" | tar -C /opt/idea --strip-components 1 -xzvf -
 
 # Add a binary to the PATH that points to the intellij startup script.
-RUN ln -s /opt/intellij/bin/intellij.sh /usr/bin/intellij-idea-ultimate
+RUN ln -s /opt/idea/bin/idea.sh /usr/bin/intellij-idea-ultimate
+
+# Add a user `coder` so that you're not developing as the `root` user
+RUN adduser coder && \
+  echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
+USER coder
