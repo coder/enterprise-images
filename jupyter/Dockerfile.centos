@@ -2,7 +2,13 @@ FROM centos:8
 
 RUN yum update -y && yum install -y \
     which \
+    git \
+    bash \
+    curl \
+    man \
+    vim \
     sudo \
+    gnupg \
     python36
 
 # Install jupyter
