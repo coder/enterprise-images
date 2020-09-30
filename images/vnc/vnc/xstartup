@@ -1,0 +1,22 @@
+#!/bin/bash
+set -euo pipefail
+
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+
+XRESOURCES_PATH="$HOME/.Xresources"
+
+if [[ ! -f $XRESOURCES_PATH ]]; then
+  touch $XRESOURCES_PATH
+fi
+
+xrdb $XRESOURCES_PATH
+
+DISPLAY_SERVER=$(xrandr | grep -e " connected [^(]" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/")
+
+# Disable screensaver and power management
+xset -dpms &
+xset s noblank &
+xset s off &
+
+exec startxfce4
