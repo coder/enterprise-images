@@ -14,12 +14,12 @@ function appendAction() {
   tag=$2
   {
     echo "      -"
-    echo "        name: Build and push - \${{ secrets.DOCKERHUB_USERNAME }}/enterprise-$image:$tag"
+    echo "        name: Build and push - codercom/enterprise-$image:$tag"
     echo "        uses: docker/build-push-action@v2"
     echo "        with:"
     echo "          context: ./images/$image"
     echo "          file: ./images/$image/Dockerfile.$tag"
-    echo "          tags: \${{ secrets.DOCKERHUB_USERNAME }}/enterprise-$image:$tag"
+    echo "          tags: codercom/enterprise-$image:$tag"
     echo "          push: \${{ github.event_name != 'pull_request' }}"
   } >> $CI_FILE
 }

@@ -34,90 +34,90 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push - ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-configure:ubuntu
+        name: Build and push - codercom/enterprise-configure:ubuntu
         uses: docker/build-push-action@v2
         with:
           context: ./images/configure
           file: ./images/configure/Dockerfile.ubuntu
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-configure:ubuntu
+          tags: codercom/enterprise-configure:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
       -
-        name: Build and push - ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-goland:centos
+        name: Build and push - codercom/enterprise-goland:centos
         uses: docker/build-push-action@v2
         with:
           context: ./images/goland
           file: ./images/goland/Dockerfile.centos
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-goland:centos
+          tags: codercom/enterprise-goland:centos
           push: ${{ github.event_name != 'pull_request' }}
       -
-        name: Build and push - ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-goland:ubuntu
+        name: Build and push - codercom/enterprise-goland:ubuntu
         uses: docker/build-push-action@v2
         with:
           context: ./images/goland
           file: ./images/goland/Dockerfile.ubuntu
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-goland:ubuntu
+          tags: codercom/enterprise-goland:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
       -
-        name: Build and push - ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-intellij:centos
+        name: Build and push - codercom/enterprise-intellij:centos
         uses: docker/build-push-action@v2
         with:
           context: ./images/intellij
           file: ./images/intellij/Dockerfile.centos
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-intellij:centos
+          tags: codercom/enterprise-intellij:centos
           push: ${{ github.event_name != 'pull_request' }}
       -
-        name: Build and push - ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-intellij:ubuntu
+        name: Build and push - codercom/enterprise-intellij:ubuntu
         uses: docker/build-push-action@v2
         with:
           context: ./images/intellij
           file: ./images/intellij/Dockerfile.ubuntu
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-intellij:ubuntu
+          tags: codercom/enterprise-intellij:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
       -
-        name: Build and push - ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-jupyter:centos
+        name: Build and push - codercom/enterprise-jupyter:centos
         uses: docker/build-push-action@v2
         with:
           context: ./images/jupyter
           file: ./images/jupyter/Dockerfile.centos
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-jupyter:centos
+          tags: codercom/enterprise-jupyter:centos
           push: ${{ github.event_name != 'pull_request' }}
       -
-        name: Build and push - ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-jupyter:ubuntu
+        name: Build and push - codercom/enterprise-jupyter:ubuntu
         uses: docker/build-push-action@v2
         with:
           context: ./images/jupyter
           file: ./images/jupyter/Dockerfile.ubuntu
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-jupyter:ubuntu
+          tags: codercom/enterprise-jupyter:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
       -
-        name: Build and push - ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-pycharm:centos
+        name: Build and push - codercom/enterprise-pycharm:centos
         uses: docker/build-push-action@v2
         with:
           context: ./images/pycharm
           file: ./images/pycharm/Dockerfile.centos
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-pycharm:centos
+          tags: codercom/enterprise-pycharm:centos
           push: ${{ github.event_name != 'pull_request' }}
       -
-        name: Build and push - ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-pycharm:ubuntu
+        name: Build and push - codercom/enterprise-pycharm:ubuntu
         uses: docker/build-push-action@v2
         with:
           context: ./images/pycharm
           file: ./images/pycharm/Dockerfile.ubuntu
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-pycharm:ubuntu
+          tags: codercom/enterprise-pycharm:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
       -
-        name: Build and push - ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-webstorm:centos
+        name: Build and push - codercom/enterprise-webstorm:centos
         uses: docker/build-push-action@v2
         with:
           context: ./images/webstorm
           file: ./images/webstorm/Dockerfile.centos
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-webstorm:centos
+          tags: codercom/enterprise-webstorm:centos
           push: ${{ github.event_name != 'pull_request' }}
       -
-        name: Build and push - ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-webstorm:ubuntu
+        name: Build and push - codercom/enterprise-webstorm:ubuntu
         uses: docker/build-push-action@v2
         with:
           context: ./images/webstorm
           file: ./images/webstorm/Dockerfile.ubuntu
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/enterprise-webstorm:ubuntu
+          tags: codercom/enterprise-webstorm:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
