@@ -15,7 +15,7 @@ function appendAction() {
   {
     echo "      -"
     echo "        name: Build and push - $image:$tag"
-    echo "        uses: docker/build-and-push@v2"
+    echo "        uses: docker/build-push-action@v2"
     echo "        with:"
     echo "          file: ./images/$image/Dockerfile.$tag"
     echo "          tags: \${{ secrets.DOCKERHUB_USERNAME }}/enterprise-$image:$tag"
