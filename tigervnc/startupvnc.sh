@@ -1,3 +1,4 @@
+
 #!/bin/bash
 ### every exit != 0 fails the script
 set -e
@@ -12,7 +13,7 @@ IMAGES:
 consol/ubuntu-xfce-vnc
 consol/centos-xfce-vnc
 consol/ubuntu-icewm-vnc
-consol/centos-icewm-vnc 
+consol/centos-icewm-vnc
 
 TAGS:
 latest  stable version of branch 'master'
@@ -82,7 +83,7 @@ chmod 600 $PASSWD_PATH
 ## start vncserver and noVNC webclient
 echo -e "\n------------------ start noVNC  ----------------------------"
 if [[ $DEBUG == true ]]; then echo "$NO_VNC_HOME/utils/launch.sh --vnc localhost:$VNC_PORT --listen $NO_VNC_PORT"; fi
-$NO_VNC_HOME/utils/launch.sh --vnc localhost:$VNC_PORT --listen $NO_VNC_PORT &> $STARTUPDIR/no_vnc_startup.log &
+$NO_VNC_HOME/utils/launch.sh --vnc localhost:$VNC_PORT --listen $NO_VNC_PORT --cert /etc/ssl/certs/ca-certificates.crt &> $STARTUPDIR/no_vnc_startup.log &
 PID_SUB=$!
 
 echo -e "\n------------------ start VNC server ------------------------"
@@ -93,7 +94,7 @@ vncserver -kill $VNC_DISPLAY_ID &> $STARTUPDIR/vnc_startup.log \
 
 echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
 if [[ $DEBUG == true ]]; then echo "vncserver $VNC_DISPLAY_ID -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION"; fi
-vncserver -cleanstale -SecurityTypes None,TLSNone $VNC_DISPLAY_ID -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION -xstartup $VNC_XSTARTUP &> $STARTUPDIR/no_vnc_startup.log
+vncserver -cleanstale $VNC_DISPLAY_ID -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION -xstartup $VNC_XSTARTUP &> $STARTUPDIR/no_vnc_startup.log
 # 
 
 ## log connect options
@@ -115,3 +116,4 @@ else
     echo -e "\n\n------------------ EXECUTE COMMAND ------------------"
     echo "Executing command: '$@'"
     exec "$@"
+fi
