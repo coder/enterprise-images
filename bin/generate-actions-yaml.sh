@@ -24,7 +24,8 @@ function appendAction() {
     echo "          file: ./images/$image/Dockerfile.$tag"
     echo "          tags: codercom/enterprise-$image:$tag"
     echo "          push: \${{ github.event_name != 'pull_request' }}"
-    echo "          load: true"
+    echo "          cache-from: type=local,src=/tmp/.buildx-cache"
+    echo "          cache-to: type=local,dest=/tmp/.buildx-cache"
   } >> $CI_FILE
 }
 
