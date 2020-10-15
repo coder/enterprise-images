@@ -1,24 +1,7 @@
-FROM ubuntu:20.04
+FROM codercom/enterprise-multieditor:ubuntu
 
-RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y \
-    git \
-    bash \
-    curl \
-    htop \
-    man \
-    vim \
-    ssh \
-    sudo \
-    lsb-release \
-    ca-certificates \
-    locales \
-    gnupg \
-    # Packages required for multi-editor support
-    libxtst6 \
-    libxrender1 \
-    libfontconfig1 \
-    libxi6 \
-    libgtk-3-0
+# Run everything as root
+USER root
 
 # Install webstorm.
 RUN mkdir -p /opt/webstorm
@@ -27,7 +10,5 @@ RUN curl -L "https://download.jetbrains.com/product?code=WS&latest&distribution=
 # Add a binary to the PATH that points to the webstorm startup script.
 RUN ln -s /opt/webstorm/bin/webstorm.sh /usr/bin/webstorm
 
-# Add a user `coder` so that you're not developing as the `root` user
-RUN adduser --gecos '' --disabled-password coder && \
-  echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
+# Set back to coder user
 USER coder

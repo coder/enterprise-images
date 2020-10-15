@@ -1,20 +1,10 @@
-FROM centos:8
+FROM codercom/enterprise-base:centos
 
-RUN yum update -y && yum install -y \
-    which \
-    git \
-    bash \
-    curl \
-    man \
-    vim \
-    sudo \
-    gnupg \
-    python36
+# Run everything as root
+USER root
 
 # Install jupyter
 RUN pip3 install jupyterlab
 
-# Add a user `coder` so that you're not developing as the `root` user
-RUN adduser coder && \
-  echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
+# Set back to coder user
 USER coder

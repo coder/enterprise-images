@@ -34,6 +34,46 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: Build and push - codercom/enterprise-base:arch
+        uses: docker/build-push-action@v2
+        with:
+          context: ./images/base
+          file: ./images/base/Dockerfile.arch
+          tags: codercom/enterprise-base:arch
+          push: ${{ github.event_name != 'pull_request' }}
+      -
+        name: Build and push - codercom/enterprise-base:centos
+        uses: docker/build-push-action@v2
+        with:
+          context: ./images/base
+          file: ./images/base/Dockerfile.centos
+          tags: codercom/enterprise-base:centos
+          push: ${{ github.event_name != 'pull_request' }}
+      -
+        name: Build and push - codercom/enterprise-base:ubuntu
+        uses: docker/build-push-action@v2
+        with:
+          context: ./images/base
+          file: ./images/base/Dockerfile.ubuntu
+          tags: codercom/enterprise-base:ubuntu
+          push: ${{ github.event_name != 'pull_request' }}
+      -
+        name: Build and push - codercom/enterprise-multieditor:centos
+        uses: docker/build-push-action@v2
+        with:
+          context: ./images/multieditor
+          file: ./images/multieditor/Dockerfile.centos
+          tags: codercom/enterprise-multieditor:centos
+          push: ${{ github.event_name != 'pull_request' }}
+      -
+        name: Build and push - codercom/enterprise-multieditor:ubuntu
+        uses: docker/build-push-action@v2
+        with:
+          context: ./images/multieditor
+          file: ./images/multieditor/Dockerfile.ubuntu
+          tags: codercom/enterprise-multieditor:ubuntu
+          push: ${{ github.event_name != 'pull_request' }}
+      -
         name: Build and push - codercom/enterprise-configure:ubuntu
         uses: docker/build-push-action@v2
         with:
