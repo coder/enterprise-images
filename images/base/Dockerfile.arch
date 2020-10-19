@@ -1,0 +1,25 @@
+FROM archlinux/base
+
+SHELL ["/bin/bash", "-c"]
+
+# Install baseline packages
+RUN pacman --noconfirm -Syu \
+    base \
+    base-devel \
+    git \
+    bash \
+    curl \
+    wget \
+    htop \
+    man \
+    vim \
+    sudo \
+    python3 \
+    openssh \
+    lsb-release \
+    ca-certificates
+
+# Add coder user.
+RUN useradd -mUs /bin/bash coder && \
+  echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
+USER coder

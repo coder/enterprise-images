@@ -1,0 +1,27 @@
+FROM centos:8
+
+# Add the EPEL repolist
+RUN yum -y install epel-release
+RUN yum repolist
+
+# Install baseline packages
+RUN yum update -y && yum install -y \
+    gcc \
+    gcc-c++ \
+    make \
+    git \
+    bash \
+    curl \
+    wget \
+    htop \
+    man \
+    vim \
+    sudo \
+    python3 \
+    redhat-lsb-core \
+    ca-certificates
+
+# Add a user `coder` so that you're not developing as the `root` user
+RUN adduser coder && \
+  echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
+USER coder

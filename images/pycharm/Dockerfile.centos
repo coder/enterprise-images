@@ -1,23 +1,7 @@
-FROM centos:8
+FROM codercom/enterprise-multieditor:centos
 
-RUN yum update -y && yum install -y \
-    which \
-    git \
-    bash \
-    curl \
-    man \
-    vim \
-    sudo \
-    gnupg \
-    # The following libraries are required for the IDE to be able to communicate with
-    # code-server through xserver messaging.
-    openssl \
-    libXtst \
-    libXrender \
-    fontconfig \
-    libXi \
-    gtk3 \
-    libGL
+# Run everything as root
+USER root
 
 # Install pycharm.
 RUN mkdir -p /opt/pycharm
@@ -26,7 +10,5 @@ RUN curl -L "https://download.jetbrains.com/product?code=PCC&latest&distribution
 # Add a binary to the PATH that points to the pycharm startup script.
 RUN ln -s /opt/pycharm/bin/pycharm.sh /usr/bin/pycharm
 
-# Add a user `coder` so that you're not developing as the `root` user
-RUN adduser coder && \
-  echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
+# Set back to coder user
 USER coder
