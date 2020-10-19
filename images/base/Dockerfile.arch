@@ -15,7 +15,9 @@ RUN pacman --noconfirm -Syu \
     vim \
     sudo \
     python3 \
-    openssh
+    openssh \
+    lsb-release \
+    ca-certificates
 
 # Add coder user.
 RUN useradd -mUs /bin/bash coder && \

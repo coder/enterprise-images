@@ -17,7 +17,9 @@ RUN yum update -y && yum install -y \
     man \
     vim \
     sudo \
-    python3
+    python3 \
+    redhat-lsb-core \
+    ca-certificates
 
 # Add a user `coder` so that you're not developing as the `root` user
 RUN adduser coder && \

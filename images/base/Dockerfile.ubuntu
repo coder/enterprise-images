@@ -12,7 +12,10 @@ RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y \
     vim \
     sudo \
     python3 \
-    python3-pip
+    python3-pip \
+    lsb-release \
+    ca-certificates \
+    locales
 
 # Add a user `coder` so that you're not developing as the `root` user
 RUN adduser --gecos '' --disabled-password coder && \
