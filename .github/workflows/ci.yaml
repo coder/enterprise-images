@@ -43,7 +43,6 @@ jobs:
           file: ./images/base/Dockerfile.arch
           tags: codercom/enterprise-base:arch
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-base:centos
         uses: docker/build-push-action@v2
@@ -52,7 +51,6 @@ jobs:
           file: ./images/base/Dockerfile.centos
           tags: codercom/enterprise-base:centos
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-base:ubuntu
         uses: docker/build-push-action@v2
@@ -61,7 +59,6 @@ jobs:
           file: ./images/base/Dockerfile.ubuntu
           tags: codercom/enterprise-base:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-multieditor:centos
         uses: docker/build-push-action@v2
@@ -70,7 +67,6 @@ jobs:
           file: ./images/multieditor/Dockerfile.centos
           tags: codercom/enterprise-multieditor:centos
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-multieditor:ubuntu
         uses: docker/build-push-action@v2
@@ -79,7 +75,6 @@ jobs:
           file: ./images/multieditor/Dockerfile.ubuntu
           tags: codercom/enterprise-multieditor:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-configure:ubuntu
         uses: docker/build-push-action@v2
@@ -88,7 +83,6 @@ jobs:
           file: ./images/configure/Dockerfile.ubuntu
           tags: codercom/enterprise-configure:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-goland:centos
         uses: docker/build-push-action@v2
@@ -97,7 +91,6 @@ jobs:
           file: ./images/goland/Dockerfile.centos
           tags: codercom/enterprise-goland:centos
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-goland:ubuntu
         uses: docker/build-push-action@v2
@@ -106,7 +99,6 @@ jobs:
           file: ./images/goland/Dockerfile.ubuntu
           tags: codercom/enterprise-goland:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-intellij:centos
         uses: docker/build-push-action@v2
@@ -115,7 +107,6 @@ jobs:
           file: ./images/intellij/Dockerfile.centos
           tags: codercom/enterprise-intellij:centos
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-intellij:ubuntu
         uses: docker/build-push-action@v2
@@ -124,7 +115,6 @@ jobs:
           file: ./images/intellij/Dockerfile.ubuntu
           tags: codercom/enterprise-intellij:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-jupyter:centos
         uses: docker/build-push-action@v2
@@ -133,7 +123,6 @@ jobs:
           file: ./images/jupyter/Dockerfile.centos
           tags: codercom/enterprise-jupyter:centos
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-jupyter:ubuntu
         uses: docker/build-push-action@v2
@@ -142,7 +131,6 @@ jobs:
           file: ./images/jupyter/Dockerfile.ubuntu
           tags: codercom/enterprise-jupyter:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-pycharm:centos
         uses: docker/build-push-action@v2
@@ -151,7 +139,6 @@ jobs:
           file: ./images/pycharm/Dockerfile.centos
           tags: codercom/enterprise-pycharm:centos
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-pycharm:ubuntu
         uses: docker/build-push-action@v2
@@ -160,7 +147,14 @@ jobs:
           file: ./images/pycharm/Dockerfile.ubuntu
           tags: codercom/enterprise-pycharm:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
+      -
+        name: Build and push - codercom/enterprise-tigervnc:ubuntu
+        uses: docker/build-push-action@v2
+        with:
+          context: ./images/tigervnc
+          file: ./images/tigervnc/Dockerfile.ubuntu
+          tags: codercom/enterprise-tigervnc:ubuntu
+          push: ${{ github.event_name != 'pull_request' }}
       -
         name: Build and push - codercom/enterprise-webstorm:centos
         uses: docker/build-push-action@v2
@@ -169,7 +163,6 @@ jobs:
           file: ./images/webstorm/Dockerfile.centos
           tags: codercom/enterprise-webstorm:centos
           push: ${{ github.event_name != 'pull_request' }}
-          load: true
       -
         name: Build and push - codercom/enterprise-webstorm:ubuntu
         uses: docker/build-push-action@v2
@@ -178,4 +171,3 @@ jobs:
           file: ./images/webstorm/Dockerfile.ubuntu
           tags: codercom/enterprise-webstorm:ubuntu
           push: ${{ github.event_name != 'pull_request' }}
-          load: true

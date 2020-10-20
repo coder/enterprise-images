@@ -24,7 +24,6 @@ function appendAction() {
     echo "          file: ./images/$image/Dockerfile.$tag"
     echo "          tags: codercom/enterprise-$image:$tag"
     echo "          push: \${{ github.event_name != 'pull_request' }}"
-    echo "          load: true"
   } >> $CI_FILE
 }
 
