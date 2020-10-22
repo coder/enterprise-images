@@ -16,7 +16,6 @@ RUN pacman --noconfirm -Syu \
     sudo \
     python3 \
     openssh \
-    lsb-release \
     ca-certificates
 
 # Add coder user.
