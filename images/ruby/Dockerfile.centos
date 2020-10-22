@@ -1,0 +1,13 @@
+FROM codercom/enterprise-base:centos
+
+# Run everything as root
+USER root
+
+# Install Ruby
+RUN yum install -y ruby
+
+# Install bundler gem
+RUN gem install bundler
+
+# Set back to coder user
+USER coder
