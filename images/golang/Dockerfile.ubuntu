@@ -1,0 +1,14 @@
+FROM codercom/enterprise-base:ubuntu
+
+# Run everything as root
+USER root
+
+# Install go1.15
+RUN curl -L "https://dl.google.com/go/go1.15.3.linux-amd64.tar.gz" | tar -C /usr/local -xzvf -
+
+# Setup go env vars
+ENV GOROOT=/usr/local/go
+ENV PATH=$PATH:/usr/local/go/bin
+
+# Set back to coder user
+USER coder
