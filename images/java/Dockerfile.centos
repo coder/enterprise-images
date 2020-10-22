@@ -1,0 +1,10 @@
+FROM codercom/enterprise-base:centos
+
+# Run everything as root
+USER root
+
+# Install JDK (OpenJDK 14)
+RUN yum install -y java-14-openjdk-devel
+
+# Set back to coder user
+USER coder
