@@ -1,0 +1,83 @@
+FROM codercom/enterprise-base:ubuntu
+
+USER 0
+
+ARG DEBCONF_NONINTERACTIVE_SEEN=true
+ARG DEBIAN_FRONTEND="noninteractive"
+
+RUN echo 'tzdata tzdata/Areas select Etc' | debconf-set-selections; \
+    echo 'tzdata tzdata/Zones/Etc select UTC' | debconf-set-selections
+
+RUN apt-get update && apt-get install -y \
+  wget \
+  unzip \
+  zsh \
+  supervisor \
+  xorg \
+  tigervnc-standalone-server \
+  tigervnc-xorg-extension \
+  tigervnc-viewer \
+  ssh \
+  xfce4 \
+  xfce4-goodies \
+  x11-apps \
+  xterm \
+  python-numpy \
+  firefox \
+  fonts-lyx
+
+# Install quality of life packages.
+RUN yes | unminimize
+
+# Remove packages which may not behave well in a VNC environment.
+RUN apt-get remove -y \
+  xfce4-battery-plugin \
+  xfce4-power-manager-plugins \
+  xfce4-pulseaudio-plugin \
+  light-locker
+
+RUN locale-gen en_US.UTF-8
+
+RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+  && apt-get install -y ./google-chrome-stable_current_amd64.deb \
+  && rm google-chrome-stable_current_amd64.deb
+
+ARG HOME=/home/coder
+ARG VNC_ROOT_DIR=/opt/vnc
+
+ENV VNC_SCRIPTS=$VNC_ROOT_DIR/scripts \
+  VNC_SETUP_SCRIPTS=$VNC_ROOT_DIR/setup \
+  VNC_LOG_DIR=$HOME/.vnc/log \
+  VNC_XSTARTUP=$VNC_ROOT_DIR/xstartup \
+  VNC_SUPERVISOR_CONFIG=$VNC_ROOT_DIR/supervisord.conf \
+  VNC_PORT=5990 \
+  VNC_DISPLAY_ID=:90 \
+  VNC_COL_DEPTH=24 \
+  VNC_RESOLUTION=3840x2160 \
+  NO_VNC_HOME=$VNC_ROOT_DIR/noVNC \
+  NO_VNC_PORT=6081 \
+  XFCE_BASE_DIR=$VNC_ROOT_DIR/xfce4 \
+  XFCE_DEST_DIR=$HOME/.config/xfce4
+
+WORKDIR $HOME
+
+# Enable better defaults for command tab completion.
+RUN chsh -s $(readlink -f $(which zsh)) coder 
+
+ADD --chown=coder:coder ./xfce4 $XFCE_BASE_DIR
+ADD --chown=coder:coder ./vnc $VNC_ROOT_DIR
+ADD --chown=coder:coder ./supervisor /etc/supervisor
+
+RUN find $VNC_SETUP_SCRIPTS -name '*.sh' -exec chmod a+x {} +
+
+RUN $VNC_SETUP_SCRIPTS/set_user_permission.sh $VNC_ROOT_DIR \
+  && chmod +x $VNC_XSTARTUP
+
+COPY ["configure", "/coder/configure"]
+RUN chmod +x /coder/configure
+
+USER coder
+
+RUN $VNC_SETUP_SCRIPTS/no_vnc.sh
+
+EXPOSE $NO_VNC_PORT

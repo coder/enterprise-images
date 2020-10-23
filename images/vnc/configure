@@ -1,0 +1,12 @@
+#!/bin/bash
+set -euo pipefail
+
+echo "Creating desktop..."
+mkdir -p "$XFCE_DEST_DIR"
+cp -rT "$XFCE_BASE_DIR" "$XFCE_DEST_DIR"
+
+# Skip default shell config prompt.
+cp /etc/zsh/newuser.zshrc.recommended $HOME/.zshrc
+
+echo "Initializing Supervisor..."
+nohup supervisord
