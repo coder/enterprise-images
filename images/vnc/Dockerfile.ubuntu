@@ -4,6 +4,9 @@ USER 0
 
 ARG DEBCONF_NONINTERACTIVE_SEEN=true
 ARG DEBIAN_FRONTEND="noninteractive"
+ARG TURBOVNC_VERSION=2.2.5
+ARG VIRTUALGL_VERSION=2.6.4
+ARG LIBJPEG_VERSION=2.0.5
 
 RUN echo 'tzdata tzdata/Areas select Etc' | debconf-set-selections; \
     echo 'tzdata tzdata/Zones/Etc select UTC' | debconf-set-selections
@@ -14,9 +17,6 @@ RUN apt-get update && apt-get install -y \
   zsh \
   supervisor \
   xorg \
-  tigervnc-standalone-server \
-  tigervnc-xorg-extension \
-  tigervnc-viewer \
   ssh \
   xfce4 \
   xfce4-goodies \
@@ -24,7 +24,18 @@ RUN apt-get update && apt-get install -y \
   xterm \
   python-numpy \
   firefox \
-  fonts-lyx
+  fonts-lyx \
+  libxtst6 \
+  libxv1 \
+  libglu1-mesa \
+  libc6-dev \
+  libglu1 \
+  libsm6 \
+  libxv1 \
+  x11-xkb-utils \
+  xauth \
+  xfonts-base \
+  xkb-data
 
 # Install quality of life packages.
 RUN yes | unminimize
@@ -44,6 +55,26 @@ RUN curl -LO https://dl.google.com/linux/direct/google-chrome-stable_current_amd
 
 ARG HOME=/home/coder
 ARG VNC_ROOT_DIR=/opt/vnc
+
+RUN cd /tmp \
+  && curl -fsSL -O https://svwh.dl.sourceforge.net/project/turbovnc/${TURBOVNC_VERSION}/turbovnc_${TURBOVNC_VERSION}_amd64.deb \
+    -O https://svwh.dl.sourceforge.net/project/libjpeg-turbo/${LIBJPEG_VERSION}/libjpeg-turbo-official_${LIBJPEG_VERSION}_amd64.deb \
+    -O https://svwh.dl.sourceforge.net/project/virtualgl/${VIRTUALGL_VERSION}/virtualgl_${VIRTUALGL_VERSION}_amd64.deb \
+    && dpkg -i *.deb \
+    && rm -f /tmp/*.deb \
+    && sed -i 's/$host:/unix:/g' /opt/TurboVNC/bin/vncserver
+
+RUN ln -s /opt/TurboVNC/bin/* /opt/VirtualGL/bin/* /usr/local/bin/
+# Configure VGL for use in a single user environment.
+# This may trigger a warning about display managers needing to be restarted.
+# This can be ignored as the VNC server manages this lifecycle.  
+RUN vglserver_config -config +s +f +t
+
+RUN echo 'no-remote-connections\n\
+no-httpd\n\
+no-x11-tcp-connections\n\
+no-pam-sessions\n\
+' > /etc/turbovncserver-security.conf
 
 ENV VNC_SCRIPTS=$VNC_ROOT_DIR/scripts \
   VNC_SETUP_SCRIPTS=$VNC_ROOT_DIR/setup \
