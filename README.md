@@ -14,15 +14,15 @@ about supported editors and known issues.
 All of the images provided in this repo include the following utilities to ensure they work well
 with all of Coder Enterprise's features, and to provide a solid out-of-the-box developer experience:
 
-* git
-* bash
-* curl & wget
-* htop
-* man
-* vim
-* sudo
-* python3 & pip3
-* gcc & gcc-c++ & make
+- git
+- bash
+- curl & wget
+- htop
+- man
+- vim
+- sudo
+- python3 & pip3
+- gcc & gcc-c++ & make
 
 ## Images on Docker Hub
 
