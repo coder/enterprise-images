@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Some images need to build before others, everything else can go in any order
-ORDERED_IMAGES=("base" "multieditor")
-
 function main() {
   # Move to top level
   pushd $(git rev-parse --show-toplevel)
@@ -23,7 +20,7 @@ function main() {
   # Pop back to original dir
   popd
 
-  echo "Successfully built all images"
+  echo "Successfully pushed all images"
 }
 
 main
