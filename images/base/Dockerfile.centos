@@ -31,4 +31,7 @@ RUN systemctl enable docker
 # Add a user `coder` so that you're not developing as the `root` user
 RUN adduser coder && \
   echo "coder ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
+
+RUN usermod -aG docker coder
+
 USER coder
