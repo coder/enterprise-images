@@ -6,6 +6,7 @@ SHELL ["/bin/bash", "-c"]
 RUN pacman --noconfirm -Syu \
     base \
     base-devel \
+    docker \
     git \
     bash \
     curl \
@@ -18,6 +19,9 @@ RUN pacman --noconfirm -Syu \
     python3 \
     openssh \
     ca-certificates
+
+# Enables Docker starting with systemd
+RUN systemctl enable docker
 
 # Add coder user.
 RUN useradd -mUs /bin/bash coder && \

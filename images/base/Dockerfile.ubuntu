@@ -5,6 +5,7 @@ RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y \
     build-essential \
     git \
     bash \
+    docker.io \
     curl \
     wget \
     unzip \
@@ -12,10 +13,17 @@ RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y \
     man \
     vim \
     sudo \
+    systemd \
     python3 \
     python3-pip \
     ca-certificates \
     locales
+
+# Enables Docker starting with systemd
+RUN systemctl enable docker
+
+# use systemd as the init
+RUN ln -s /lib/systemd/systemd /sbin/init
 
 # Add a user `coder` so that you're not developing as the `root` user
 RUN adduser --gecos '' --disabled-password coder && \
