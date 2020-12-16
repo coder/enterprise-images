@@ -4,8 +4,12 @@ FROM centos:8
 RUN yum -y install epel-release
 RUN yum repolist
 
+RUN yum update -y && yum install -y yum-utils device-mapper-persistent-data lvm2
+RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
 # Install baseline packages
 RUN yum update -y && yum install -y \
+    docker-ce \
     gcc \
     gcc-c++ \
     make \
@@ -20,6 +24,9 @@ RUN yum update -y && yum install -y \
     sudo \
     python3 \
     ca-certificates
+
+# Enables Docker starting with systemd
+RUN systemctl enable docker
 
 # Add a user `coder` so that you're not developing as the `root` user
 RUN adduser coder && \
