@@ -1,4 +1,4 @@
-# Enterprise IntelliJ
+# Enterprise Android
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/codercom/enterprise-android?label=codercom%2Fenterprise-android)](https://hub.docker.com/r/codercom/enterprise-android)
 
