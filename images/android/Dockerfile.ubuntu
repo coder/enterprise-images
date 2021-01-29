@@ -1,0 +1,29 @@
+FROM codercom/enterprise-base:ubuntu
+
+# Run everything as root
+USER root
+
+RUN apt-get update && \
+    apt-get install -y openjdk-14-jdk
+
+ENV ANDROID_SDK_ROOT /usr/lib/android-sdk
+RUN mkdir -p ${ANDROID_SDK_ROOT}
+
+# Install cmdline-tools.
+RUN cd ${ANDROID_SDK_ROOT} && \
+    mkdir cmdline-tools && \
+    cd cmdline-tools && \
+    wget https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip && \
+    unzip *.zip && rm *.zip && \
+    mv cmdline-tools latest
+ENV PATH ${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin
+
+# Install build tools.
+RUN yes | sdkmanager "build-tools;29.0.3"
+ENV PATH ${PATH}:${ANDROID_SDK_ROOT}/platform-tools
+
+# Install platform android-29.
+RUN yes | sdkmanager "platforms;android-29"
+
+# Set back to coder user
+USER coder
