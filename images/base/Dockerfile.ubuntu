@@ -2,25 +2,31 @@ FROM ubuntu:20.04
 
 # Install baseline packages
 RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y \
-    build-essential \
-    git \
-    bash \
-    docker.io \
-    curl \
-    wget \
-    unzip \
-    htop \
-    man \
-    vim \
-    sudo \
-    systemd \
-    python3 \
-    python3-pip \
-    ca-certificates \
-    locales
+  build-essential \
+  git \
+  bash \
+  docker.io \
+  curl \
+  wget \
+  unzip \
+  htop \
+  man \
+  vim \
+  sudo \
+  systemd \
+  python3 \
+  python3-pip \
+  ca-certificates \
+  openssh-server \
+  locales
 
-# Enables Docker starting with systemd
-RUN systemctl enable docker
+# Enables Docker and OpenSSH with systemd
+RUN systemctl enable docker ssh
+
+# adjust OpenSSH config
+RUN echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config && \
+  echo "X11Forwarding yes" >> /etc/ssh/sshd_config && \
+  echo "X11UseLocalhost no" >> /etc/ssh/sshd_config
 
 # use systemd as the init
 RUN ln -s /lib/systemd/systemd /sbin/init
