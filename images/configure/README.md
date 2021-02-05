@@ -2,8 +2,9 @@
 
 ## Description
 
-This directory contains an example [image](./Dockerfile.ubuntu) and [configure](./configure)
-script. The configure script is used to add [`nvm`](https://github.com/nvm-sh/nvm) to a Coder environment.
+This directory contains an example [image](./Dockerfile.ubuntu) and
+[configure](./configure) script. The configure script is used to add
+[`nvm`](https://github.com/nvm-sh/nvm) to a Coder environment.
 
 ## How To Use It
 
@@ -13,4 +14,6 @@ process.
 
 ## Further Reading
 
-Our support site contains [a tutorial](https://help.coder.com/hc/en-us/articles/360055782794-Configuring-Your-Environment-on-Startup) on Coder Configure.
+Our support site contains
+[a tutorial](https://help.coder.com/hc/en-us/articles/360055782794-Configuring-Your-Environment-on-Startup)
+on Coder Configure.
