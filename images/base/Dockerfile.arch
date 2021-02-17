@@ -1,6 +1,9 @@
-FROM archlinux/base
+FROM archlinux/archlinux:base-20210205.0.15146
 
 SHELL ["/bin/bash", "-c"]
+
+# Workaround broken upstream archive by pinning to older snapshot
+COPY mirrorlist /etc/pacman.d/mirrorlist
 
 # Install baseline packages
 RUN pacman --noconfirm -Syu \
