@@ -4,7 +4,12 @@
 
 ## Description
 
-By default, Coder Enterprise supports [`code-server`](https://github.com/cdr/code-server) and a terminal application. Additional IDEs [require dependencies](https://enterprise.coder.com/docs/installing-an-ide-onto-your-image#required-packages). This image builds on [enterprise-base](../base/README.md) image by adding those additional dependencies.
+By default, Coder Enterprise supports
+[`code-server`](https://github.com/cdr/code-server) and a terminal application.
+Additional IDEs
+[require dependencies](https://enterprise.coder.com/docs/installing-an-ide-onto-your-image#required-packages).
+This image builds on [enterprise-base](../base/README.md) image by adding those
+additional dependencies.
 
 ## How To Use It
 
