@@ -26,7 +26,8 @@ RUN systemctl enable docker ssh
 # adjust OpenSSH config
 RUN echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config && \
   echo "X11Forwarding yes" >> /etc/ssh/sshd_config && \
-  echo "X11UseLocalhost no" >> /etc/ssh/sshd_config
+  echo "X11UseLocalhost no" >> /etc/ssh/sshd_config && \
+  rm /etc/environment
 
 # use systemd as the init
 RUN ln -s /lib/systemd/systemd /sbin/init
