@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "fmt:check": "prettier --check '**/*.{md,yaml}'",
     "fmt": "prettier --write '**/*.{md,yaml}'"
   },
   "devDependencies": {
