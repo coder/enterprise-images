@@ -16,6 +16,7 @@ RUN apt-get update && \
       software-properties-common \
       sudo \
       systemd \
+      systemd-sysv \
       unzip \
       vim \
       wget && \
@@ -26,9 +27,6 @@ RUN apt-get update && \
 
 # Enables Docker starting with systemd
 RUN systemctl enable docker
-
-# use systemd as the init
-RUN ln -s /lib/systemd/systemd /sbin/init
 
 # Add a user `coder` so that you're not developing as the `root` user
 RUN adduser --gecos '' --disabled-password coder && \
