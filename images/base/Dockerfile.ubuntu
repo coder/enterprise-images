@@ -1,29 +1,28 @@
 FROM ubuntu:20.04
 
-# Install software-properties-common
-RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y software-properties-common 
-
-# Add git-core ppa <https://git-scm.com/download/linux>
-RUN add-apt-repository ppa:git-core/ppa
-
 # Install baseline packages
-RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y \
-    build-essential \
-    git \
-    bash \
-    docker.io \
-    curl \
-    wget \
-    unzip \
-    htop \
-    man \
-    vim \
-    sudo \
-    systemd \
-    python3 \
-    python3-pip \
-    ca-certificates \
-    locales
+RUN apt-get update && \
+    DEBIAN_FRONTEND="noninteractive" apt-get install -y \
+      bash \
+      build-essential \
+      ca-certificates \
+      curl \
+      docker.io \
+      htop \
+      locales \
+      man \
+      python3 \
+      python3-pip \
+      software-properties-common \
+      sudo \
+      systemd \
+      unzip \
+      vim \
+      wget && \
+    # Install latest Git using their official PPA
+    add-apt-repository ppa:git-core/ppa && \
+    DEBIAN_FRONTEND="noninteractive" apt-get install -y git
+
 
 # Enables Docker starting with systemd
 RUN systemctl enable docker
