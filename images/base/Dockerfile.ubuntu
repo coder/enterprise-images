@@ -1,6 +1,9 @@
 FROM ubuntu:20.04
 
-# git-core ppa
+# Install software-properties-common
+RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y software-properties-common 
+
+# Add git-core ppa <https://git-scm.com/download/linux>
 RUN add-apt-repository ppa:git-core/ppa
 
 # Install baseline packages
