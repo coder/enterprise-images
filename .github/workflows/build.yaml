@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: Install Node modules
+      - name: Install Node.js modules
         run: yarn install
 
       - name: Check formatting
