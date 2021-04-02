@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "fmt:check": "prettier --check '**/*.{md,yaml}'",
-    "fmt": "prettier --write '**/*.{md,yaml}'"
+    "format:check": "prettier --check '**/*.{css,html,js,json,jsx,ts,tsx,yaml,yml}'",
+    "format:write": "prettier --write '**/*.{css,html,js,json,jsx,ts,tsx,yaml,yml}'"
   },
   "devDependencies": {
     "husky": "^4.3.8",
@@ -15,6 +15,8 @@
     }
   },
   "lint-staged": {
-    "*.{md,yaml}": "prettier --write"
+    "*.{css,html,js,json,jsx,ts,tsx,yaml,yml}": [
+      "prettier --write"
+    ]
   }
 }
