@@ -9,6 +9,12 @@ on:
     branches:
       - main
 
+  schedule:
+    # Run at 2am UTC
+    - cron: "0 2 * * *"
+
+  workflow_dispatch:
+
 jobs:
   # Quick checks, running linters, checking formatting, etc
   quick:
