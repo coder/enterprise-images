@@ -94,7 +94,9 @@ for image in "${IMAGES[@]}"; do
   image_path="$image_dir/$image_file"
 
   if [ ! -f "$image_path" ]; then
-    # echo "Path '$image_path' does not exist; skipping" >&2
+    if [ $QUIET = false ]; then
+      echo "Path '$image_path' does not exist; skipping" >&2
+    fi
     continue
   fi
 
