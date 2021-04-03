@@ -3,16 +3,13 @@ FROM codercom/enterprise-base:centos
 # Run everything as root
 USER root
 
-# Install go1.15
-RUN curl -L "https://dl.google.com/go/go1.15.3.linux-amd64.tar.gz" | tar -C /usr/local -xzvf -
-
-# Setup go env vars
-ENV GOROOT /usr/local/go
-ENV PATH $PATH:$GOROOT/bin
-
-ENV GOPATH /home/coder/go
-ENV GOBIN $GOPATH/bin
-ENV PATH $PATH:$GOBIN
+# Install latest stable version of Go
+RUN GOVERSION="$(curl --silent --show-error --location https://golang.org/VERSION?m=text)" && \
+    curl --silent --show-error --location "https://golang.org/dl/${GOVERSION}.linux-amd64.tar.gz" | \
+      tar -C /usr/local -xzvf -
 
 # Set back to coder user
 USER coder
+
+# Ensure Go binaries are available
+ENV PATH $PATH:/usr/local/go/bin:/home/coder/go/bin
