@@ -3,9 +3,7 @@ FROM centos:8
 SHELL ["/bin/bash", "-c"]
 
 # Add the EPEL repolist
-RUN dnf --assumeyes install \
-      epel-release && \
-    dnf repolist && \
+RUN dnf install --assumeyes epel-release && \
     dnf upgrade --assumeyes --refresh && \
     dnf install --assumeyes \
       bash \
