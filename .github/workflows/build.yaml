@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Cancel previous runs
-        if: ${{ github.event_name == 'pull_request' }}
+        if: github.event_name == 'pull_request'
         uses: styfle/cancel-workflow-action@0.9.0
 
       - name: Checkout
@@ -39,6 +39,7 @@ jobs:
         run: yarn format:check
 
   images:
+    name: images/${{ matrix.job}}
     runs-on: ubuntu-20.04
     strategy:
       matrix:
@@ -46,29 +47,37 @@ jobs:
           - arch
           - centos
           - ubuntu
-    name: images/${{ matrix.job}}
+      fail-fast: false
     steps:
       - name: Cancel previous runs
-        if: ${{ github.event_name == 'pull_request' }}
+        if: github.event_name == 'pull_request'
         uses: styfle/cancel-workflow-action@0.9.0
 
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Install dependencies
+        run: ./scripts/install_deps.sh
+
       - name: Build ${{ matrix.job }} images
         run: |
-          ${{ github.workspace }}/scripts/build_images.sh \
+          ./scripts/build_images.sh \
+            --tag=${{ matrix.job }}
+
+      - name: Scan ${{ matrix.job }} container images
+        run: |
+          ./scripts/scan_images.sh \
             --tag=${{ matrix.job }}
 
       - name: Authenticate to Docker Hub
-        if: ${{ github.event_name != 'pull_request' }}
+        if: github.event_name != 'pull_request'
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push images to Docker Hub
-        if: ${{ github.event_name != 'pull_request' }}
+        if: github.event_name != 'pull_request'
         run: |
-          ${{ github.workspace}}/scripts/push_images.sh \
+          ./scripts/push_images.sh \
             --tag=${{ matrix.job}}
