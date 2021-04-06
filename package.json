@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "prepare": "husky install",
     "format:check": "prettier --check '**/*.{css,html,js,json,jsx,ts,tsx,yaml,yml}'",
-    "format:write": "prettier --write '**/*.{css,html,js,json,jsx,ts,tsx,yaml,yml}'"
+    "format:write": "prettier --write '**/*.{css,html,js,json,jsx,ts,tsx,yaml,yml}'",
+    "husky": "husky install"
   },
   "devDependencies": {
     "husky": "^6.0.0",
