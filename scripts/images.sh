@@ -18,5 +18,6 @@ IMAGES=(
   "node"
   "pycharm"
   "ruby"
+  "vnc"
   "webstorm"
 )
