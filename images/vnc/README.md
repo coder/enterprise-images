@@ -10,7 +10,7 @@ A [sample image](https://github.com/cdr/enterprise-images/tree/main/images/vnc) 
     ```sh
     coder config-ssh
     # Forward the remote VNC server to your local machine
-    ssh -L -N 5990:localhost:localhost:5990 coder.[env-name]
+    ssh -L -N 5990:localhost:5990 coder.[env-name]
     # You will not see any output if it succeeds, but you
     # will be able to connect your VNC client to localhost:5990
     ```

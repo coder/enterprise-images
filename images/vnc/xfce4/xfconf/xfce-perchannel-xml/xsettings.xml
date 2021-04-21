@@ -37,9 +37,6 @@
     <property name="DecorationLayout" type="empty"/>
   </property>
   <property name="Gdk" type="empty">
-    <property name="WindowScalingFactor" type="int" value="2"/>
-  </property>
-  <property name="Xfce" type="empty">
-    <property name="LastCustomDPI" type="int" value="112"/>
+    <property name="WindowScalingFactor" type="int" value="1"/>
   </property>
 </channel>
