@@ -24,7 +24,7 @@
         </property>
         <property name="image-path" type="string" value="/home/coder/.config/xfce4/coder-bg.jpg"/>
         <property name="image-show" type="bool" value="true"/>
-        <property name="image-style" type="int" value="0"/>
+        <property name="image-style" type="string" value="scaled"/>
       </property>
     </property>
   </property>
