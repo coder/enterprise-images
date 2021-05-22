@@ -9,9 +9,12 @@ updates:
     commit-message:
       prefix: "chore"
     ignore:
-      # GitHub always delivers the latest versions for each major
-      # release tag, so handle updates manually
+      # These actions deliver the latest versions by updating the
+      # major release tag, so ignore minor/patch updates
       - dependency-name: "actions/*"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-patch"
 
   - package-ecosystem: "npm"
     directory: "/"
