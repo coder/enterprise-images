@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
 
+# The ./_/husky.sh script always runs this script using "sh" in order
+# to try to capture the exit code. This means that bash-isms can cause
+# an error message. Some distros, such as Arch, use bash for /bin/sh,
+# so do not experience this problem, but this is non-standard and
+# Debian-based distributions (including Ubuntu) use dash for /bin/sh.
+#
+# We work around this by detecting whether we are running under Bash,
+# by looking for the BASH environment variable, and replacing the
+# current script with a version under Bash by using exec. For details,
+# see https://github.com/typicode/husky/issues/971.
+if [ -z "${BASH:-}" ]; then
+  exec bash "$0" "$@"
+fi
+
 source "$(dirname "$0")/_/husky.sh"
 
 set -euo pipefail
