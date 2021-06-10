@@ -1,9 +1,19 @@
-FROM codercom/enterprise-multieditor:centos
+FROM codercom/enterprise-java:centos
 
 # Run everything as root
 USER root
 
-# Install intellij.
+# Packages required for multi-editor support
+RUN yum update -y && yum install -y \
+    openssl \
+    libXtst \
+    libXrender \
+    fontconfig \
+    libXi \
+    gtk3 \
+    libGL
+
+# Install intellij & java.
 RUN mkdir -p /opt/idea
 RUN curl -L "https://download.jetbrains.com/product?code=IIC&latest&distribution=linux" | tar -C /opt/idea --strip-components 1 -xzvf -
 

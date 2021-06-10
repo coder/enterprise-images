@@ -1,9 +1,17 @@
-FROM codercom/enterprise-multieditor:ubuntu
+FROM codercom/enterprise-java:ubuntu
 
 # Run everything as root
 USER root
 
-# Install intellij.
+# Packages required for multi-editor support
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
+    libxtst6 \
+    libxrender1 \
+    libfontconfig1 \
+    libxi6 \
+    libgtk-3-0
+
+# Install intellij & java.
 RUN mkdir -p /opt/idea
 RUN curl -L "https://download.jetbrains.com/product?code=IIC&latest&distribution=linux" | tar -C /opt/idea --strip-components 1 -xzvf -
 
