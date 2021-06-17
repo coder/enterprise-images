@@ -20,4 +20,5 @@ IMAGES=(
   "ruby"
   "vnc"
   "webstorm"
+  "clion"
 )
