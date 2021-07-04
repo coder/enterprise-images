@@ -1,17 +1,19 @@
-FROM ubuntu:20.04
+FROM ubuntu:21.04
 
 SHELL ["/bin/bash", "-c"]
 
 # Install baseline packages
 RUN apt-get update && \
     DEBIAN_FRONTEND="noninteractive" apt-get install --yes \
+      apt-transport-https \
       bash \
       build-essential \
       ca-certificates \
       curl \
-      docker.io \
+      gnupg \
       htop \
       locales \
+      lsb-release \
       man \
       python3 \
       python3-pip \
@@ -25,6 +27,19 @@ RUN apt-get update && \
     # Install latest Git using their official PPA
     add-apt-repository ppa:git-core/ppa && \
     DEBIAN_FRONTEND="noninteractive" apt-get install --yes git
+
+# Copy configuration files to appropriate locations
+COPY etc/apt/sources.list.d/* /etc/apt/sources.list.d/
+COPY usr/share/keyrings/* /usr/share/keyrings/
+
+# Docker (from official repository)
+RUN apt-get update --quiet && \
+    apt-get install --no-install-recommends --yes --quiet \
+      containerd.io \
+      docker-ce \
+      docker-ce-cli && \
+  # Delete package cache to avoid consuming space in layer
+   apt-get clean
 
 # Enables Docker starting with systemd
 RUN systemctl enable docker
