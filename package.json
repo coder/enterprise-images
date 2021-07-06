@@ -6,7 +6,7 @@
     "husky": "husky install"
   },
   "devDependencies": {
-    "husky": "6.0.0",
+    "husky": "7.0.1",
     "lint-staged": "11.0.0",
     "prettier": "2.3.2"
   },
