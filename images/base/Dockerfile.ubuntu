@@ -29,6 +29,10 @@ RUN apt-get update && \
 # Enables Docker starting with systemd
 RUN systemctl enable docker
 
+# Add docker-compose
+RUN curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
+
 # Add a user `coder` so that you're not developing as the `root` user
 RUN useradd coder \
       --create-home \
