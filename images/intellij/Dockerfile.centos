@@ -13,7 +13,7 @@ RUN yum update -y && yum install -y \
     gtk3 \
     libGL
 
-# Install intellij & java.
+# Install intellij
 RUN mkdir -p /opt/idea
 RUN curl -L "https://download.jetbrains.com/product?code=IIC&latest&distribution=linux" | tar -C /opt/idea --strip-components 1 -xzvf -
 
