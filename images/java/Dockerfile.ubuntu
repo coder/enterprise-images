@@ -4,8 +4,8 @@ FROM codercom/enterprise-base:ubuntu
 USER root
 
 # Install JDK (OpenJDK 8)
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y openjdk-8-jdk
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y openjdk-14-jdk
+ENV JAVA_HOME /usr/lib/jvm/java-14-openjdk-amd64
 ENV PATH $PATH:$JAVA_HOME/bin
 
 # Install Maven

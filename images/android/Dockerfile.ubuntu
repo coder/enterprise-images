@@ -1,10 +1,7 @@
-FROM codercom/enterprise-base:ubuntu
+FROM codercom/enterprise-java:ubuntu
 
 # Run everything as root
 USER root
-
-RUN apt-get update && \
-    apt-get install -y openjdk-14-jdk
 
 ENV ANDROID_SDK_ROOT /usr/lib/android-sdk
 ENV ANDROID_HOME ${ANDROID_SDK_ROOT}
@@ -25,6 +22,20 @@ ENV PATH ${PATH}:${ANDROID_SDK_ROOT}/platform-tools
 
 # Install platform android-29.
 RUN yes | sdkmanager "platforms;android-29"
+
+# Packages required for multi-editor support
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
+    libxtst6 \
+    libxrender1 \
+    libfontconfig1 \
+    libxi6 \
+    libgtk-3-0
+
+# Install Android Studio
+RUN add-apt-repository ppa:maarten-fonville/android-studio && \
+    apt update && \
+    apt install -y android-studio && \
+    ln -s /opt/android-studio/bin/studio.sh /usr/local/bin/studio
 
 # Set back to coder user
 USER coder
