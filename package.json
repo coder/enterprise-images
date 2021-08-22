@@ -2,11 +2,10 @@
   "private": true,
   "scripts": {
     "format:check": "prettier --check '**/*.{css,html,js,json,jsx,ts,tsx,yaml,yml}'",
-    "format:write": "prettier --write '**/*.{css,html,js,json,jsx,ts,tsx,yaml,yml}'",
-    "husky": "husky install"
+    "format:write": "prettier --write '**/*.{css,html,js,json,jsx,ts,tsx,yaml,yml}'"
   },
   "devDependencies": {
-    "husky": "6.0.0",
+    "husky": "7.0.1",
     "lint-staged": "11.0.0",
     "prettier": "2.3.2"
   },
