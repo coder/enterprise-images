@@ -11,7 +11,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
     libxi6 \
     libgtk-3-0
 
-# Install intellij & java.
+# Install intellij
 RUN mkdir -p /opt/idea
 RUN curl -L "https://download.jetbrains.com/product?code=IIC&latest&distribution=linux" | tar -C /opt/idea --strip-components 1 -xzvf -
 

@@ -4,9 +4,9 @@
 
 ## Description
 
-Wraps [enterprise-base](../base/README.md) with Android SDK installation.
+Wraps [enterprise-java](../java/README.md) with the Android SDK and Studio installations.
 
 ## How To Use It
 
-This image is ready for direct use within Coder Enterprise. Environments created
-from this image will be able to build and launch Android apps.
+This image is ready for direct use within Coder. Workspaces created
+from this image will be able to use Android Studio to build and launch Android apps.
