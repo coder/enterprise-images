@@ -1,0 +1,30 @@
+FROM codercom/enterprise-base:ubuntu
+
+# Run everything as root
+USER root
+
+ARG DEBIAN_FRONTEND="noninteractive"
+
+# Install rustup into /bin
+ENV RUSTUP_HOME=/bin/rustup
+# Temporarily install cargo in /tmp/cargo
+ARG CARGO_HOME=/var/tmp/cargo
+
+# Run the install script
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+# Select default Rust toolchain
+RUN /var/tmp/cargo/bin/rustup default stable
+
+# Add rust to PATH
+ENV PATH=$PATH:$RUSTUP_HOME
+# Set proper CARGO_HOME
+ENV CARGO_HOME=/home/coder/.cargo
+ENV PATH=$PATH:/home/coder/.cargo/bin
+
+# Copy the configure script
+# This will move cargo into the home directory
+COPY configure /coder/configure
+
+# Set back to coder user
+USER coder

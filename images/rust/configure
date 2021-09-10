@@ -1,0 +1,7 @@
+# if /home/coder/.cargo/bin doesn't exist, move cargo from /tmp/cargo
+if [ ! -d $CARGO_HOME ]; then
+    echo "Moving cargo from /var/tmp/cargo to $CARGO_HOME"
+
+    mkdir -p $CARGO_HOME
+    sudo mv -r /var/tmp/cargo/* $CARGO_HOME
+fi
