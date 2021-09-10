@@ -3,7 +3,7 @@ FROM codercom/enterprise-multieditor:ubuntu
 # Run everything as root
 USER root
 
-# Install pycharm.
+# Install DataSpell.
 RUN mkdir -p /opt/dataspell
 RUN curl -L "https://download.jetbrains.com/python/jetbrains-data-spell-213.2094.12.tar.gz" | tar -C /opt/dataspell --strip-components 1 -xzvf -
 
