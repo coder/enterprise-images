@@ -100,7 +100,8 @@ RUN find $VNC_SETUP_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 RUN $VNC_SETUP_SCRIPTS/set_user_permission.sh $VNC_ROOT_DIR \
   && chmod +x $VNC_XSTARTUP
 
-COPY ["configure", "/coder/configure"]
+# Add Coder-specific scripts and metadata to the image
+COPY ["./coder", "/coder"]
 RUN chmod +x /coder/configure
 
 USER coder
