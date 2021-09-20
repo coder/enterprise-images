@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,22 +8,28 @@
     <title>VNC Desktop</title>
     <style type="text/css">
         body {
-            margin: 0;            /* Reset default margin */
+            margin: 0;
+            /* Reset default margin */
         }
+
         iframe {
-            display: block;       /* iframes are inline by default */
+            display: block;
+            /* iframes are inline by default */
             background: #000;
-            border: none;         /* Reset default border */
-            height: 100vh;        /* Viewport-relative units */
+            border: none;
+            /* Reset default border */
+            height: 100vh;
+            /* Viewport-relative units */
             width: 100vw;
         }
     </style>
 </head>
+
 <body>
     <iframe src="vnc.html" id="desktop">
         Your browser does not support iFrames. Navigate to <a id="desktop-link" href="vnc.html">vnc.html</a>.
     </iframe>
-    
+
     <script type="text/javascript">
         let url = "vnc.html?resize=remote&autoconnect=1&path="
         let path = "websockify"
@@ -40,4 +47,5 @@
         document.getElementById("desktop-link").href = url + path;
     </script>
 </body>
+
 </html>
