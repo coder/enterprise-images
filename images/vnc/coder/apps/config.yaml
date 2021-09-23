@@ -4,14 +4,14 @@ apps:
     scheme: http
     port: 6081
     # Working directory
-    dir: /home/coder
+    working-directory: /home/coder
     # File path to icon used in application launcher
-    icon_path: /coder/apps/desktop.png
+    icon-path: /coder/apps/desktop.png
     # VNC server will be started by default in this image
     command: supervisorctl
     # Array of arguments for command
     args: ["start", "vncserver"]
-    health_check:
+    health-check:
       exec:
         command: "supervisorctl"
         args: ["status", "vncserver"]
