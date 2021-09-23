@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VNC Desktop</title>
+    <style type="text/css">
+      body {
+        margin: 0;
+        /* Reset default margin */
+      }
+
+      iframe {
+        display: block;
+        /* iframes are inline by default */
+        background: #000;
+        border: none;
+        /* Reset default border */
+        height: 100vh;
+        /* Viewport-relative units */
+        width: 100vw;
+      }
+    </style>
+  </head>
+
+  <body>
+    <iframe src="vnc.html" id="desktop">
+      Your browser does not support iFrames. Navigate to
+      <a id="desktop-link" href="vnc.html">vnc.html</a>.
+    </iframe>
+
+    <script type="text/javascript">
+      let url = "vnc.html?resize=remote&autoconnect=1&path=";
+      let path = "websockify";
+      if (window.location.pathname) {
+        // change the path depending on window.location (necessary for websockets to work on Coder's application path
+        // ex. /api/v0/workspaces/[id]/proxy/apps/desktop/)
+        path = window.location.pathname;
+        path = path.replace(/^\/|\/$/g, "");
+        path = path + "/websockify";
+        console.log(path);
+      } else {
+        console.error("window.location.pathname is undefined");
+      }
+      document.getElementById("desktop").src = url + path;
+      document.getElementById("desktop-link").href = url + path;
+    </script>
+  </body>
+</html>

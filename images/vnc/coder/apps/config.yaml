@@ -1,0 +1,21 @@
+# Adds a "Desktop" app to this workspace in the Coder dashboard
+apps:
+  - name: Desktop
+    scheme: http
+    port: 6081
+    # Working directory
+    working-directory: /home/coder
+    # File path to icon used in application launcher
+    icon-path: /coder/apps/desktop.png
+    # VNC server will be started by default in this image
+    command: supervisorctl
+    # Array of arguments for command
+    args: ["start", "vncserver"]
+    health-check:
+      exec:
+        command: "supervisorctl"
+        args: ["status", "vncserver"]
+      http:
+        scheme: "http"
+        path: "/"
+        port: 6081
