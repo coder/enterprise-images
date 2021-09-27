@@ -10,8 +10,17 @@ on:
       - main
 
   schedule:
-    # Run at 2am UTC
-    - cron: "0 2 * * *"
+    # Re-build all images at 2am UTC every Monday (8pm CST/9pm CDT)
+    #
+    # This ensures we always start with a recent base image, which
+    # reduces wasted space due to written-over files in the writable
+    # layer, ensures packages are up-to-date (since many of these
+    # images install the latest versions of packages available at
+    # build time), and allow us to ensure that images continue to
+    # be buildable from source (no removed packages).
+    #
+    # See: https://crontab.guru/#0_2_*_*_1
+    - cron: "0 2 * * 1"
 
   workflow_dispatch:
 
