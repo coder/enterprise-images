@@ -1,0 +1,2 @@
+# Tailscale packages for ubuntu focal
+deb [signed-by=/usr/share/keyrings/tailscale.gpg] https://pkgs.tailscale.com/stable/ubuntu focal main
