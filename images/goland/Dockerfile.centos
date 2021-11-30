@@ -1,7 +1,17 @@
-FROM codercom/enterprise-multieditor:centos
+FROM codercom/enterprise-golang:centos
 
 # Run everything as root
 USER root
+
+# Packages required for multi-editor support
+RUN yum update -y && yum install -y \
+    openssl \
+    libXtst \
+    libXrender \
+    fontconfig \
+    libXi \
+    gtk3 \
+    libGL
 
 # Install goland.
 RUN mkdir -p /opt/goland
