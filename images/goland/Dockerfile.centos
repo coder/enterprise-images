@@ -4,12 +4,14 @@ FROM codercom/enterprise-golang:centos
 USER root
 
 # Packages required for multi-editor support
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
-    libxtst6 \
-    libxrender1 \
-    libfontconfig1 \
-    libxi6 \
-    libgtk-3-0
+RUN yum update -y && yum install -y \
+    openssl \
+    libXtst \
+    libXrender \
+    fontconfig \
+    libXi \
+    gtk3 \
+    libGL
 
 # Install goland.
 RUN mkdir -p /opt/goland
