@@ -1,0 +1,24 @@
+FROM codercom/enterprise-multieditor:centos
+
+# Run everything as root
+USER root
+
+# Install php interpreter and CGI
+RUN yum update -y && yum install -y \
+    php \
+    php-common \
+    php-fpm \
+    php-opcache \
+    php-cli \
+    php-pear \
+    php-devel  
+
+# Install phpstorm.
+RUN mkdir -p /opt/ps
+RUN curl -L "https://download.jetbrains.com/product?code=PS&latest&distribution=linux" | tar -C /opt/ps --strip-components 1 -xzvf -
+
+# Add a binary to the PATH that points to the intellij startup script.
+RUN ln -s /opt/ps/bin/phpstorm.sh /usr/bin/phpstorm
+
+# Set back to coder user
+USER coder
