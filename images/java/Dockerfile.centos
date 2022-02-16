@@ -1,7 +1,7 @@
 FROM codercom/enterprise-base:centos
 
 # Run everything as root
-USER 0
+USER root
 
 # Install JDK (OpenJDK 8)
 RUN yum install -y java-1.8.0-openjdk-devel
@@ -52,4 +52,4 @@ RUN mkdir -p /usr/share/gradle /usr/share/gradle/ref \
 ENV PATH $PATH:$GRADLE_HOME/bin
 
 # Set back to coder user
-USER 1000
+USER coder

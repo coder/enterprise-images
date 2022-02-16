@@ -1,7 +1,7 @@
 FROM codercom/enterprise-java:ubuntu
 
 # Run everything as root
-USER 0
+USER root
 
 ENV ANDROID_SDK_ROOT /usr/lib/android-sdk
 ENV ANDROID_HOME ${ANDROID_SDK_ROOT}
@@ -38,4 +38,4 @@ RUN add-apt-repository ppa:maarten-fonville/android-studio && \
     ln -s /opt/android-studio/bin/studio.sh /usr/local/bin/studio
 
 # Set back to coder user
-USER 1000
+USER coder
