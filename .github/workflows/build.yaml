@@ -67,6 +67,7 @@ jobs:
           - arch
           - centos
           - ubuntu
+      fail-fast: false
     name: images/${{ matrix.job}}
     steps:
       - name: Cancel previous runs
