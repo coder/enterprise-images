@@ -1,7 +1,7 @@
 FROM codercom/enterprise-multieditor:ubuntu
 
 # Run everything as root
-USER 0
+USER root
 
 # Install DataSpell.
 RUN mkdir -p /opt/dataspell
@@ -11,4 +11,4 @@ RUN curl -L "https://download.jetbrains.com/python/jetbrains-data-spell-213.2094
 RUN ln -s /opt/dataspell/bin/dataspell.sh /usr/bin/dataspell
 
 # Set back to coder user
-USER 1000
+USER coder

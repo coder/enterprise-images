@@ -1,7 +1,7 @@
 FROM codercom/enterprise-multieditor:centos
 
 # Run everything as root
-USER 0
+USER root
 
 # Install clion.
 RUN mkdir -p /opt/clion
@@ -11,4 +11,4 @@ RUN curl -L "https://download.jetbrains.com/product?code=CL&latest&distribution=
 RUN ln -s /opt/clion/bin/clion.sh /usr/bin/clion
 
 # Set back to coder user
-USER 1000
+USER coder

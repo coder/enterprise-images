@@ -1,11 +1,11 @@
 FROM codercom/enterprise-base:centos
 
 # Run everything as root
-USER 0
+USER root
 
 # Install jupyter
 RUN pip3 install jupyter-core==4.7.1 && \
     pip3 install jupyterlab
 
 # Set back to coder user
-USER 1000
+USER coder
