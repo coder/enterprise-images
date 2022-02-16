@@ -1,7 +1,7 @@
 FROM codercom/enterprise-base:centos
 
 # Run everything as root
-USER root
+USER 0
 
 # Packages required for multi-editor support
 RUN yum update -y && yum install -y \
@@ -14,4 +14,4 @@ RUN yum update -y && yum install -y \
     libGL
 
 # Set back to coder user
-USER coder
+USER 1000

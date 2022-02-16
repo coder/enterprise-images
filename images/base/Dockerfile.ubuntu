@@ -42,7 +42,7 @@ RUN useradd coder \
       --user-group && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >>/etc/sudoers.d/nopasswd
 
-USER coder
+USER 1000
 
 # install Homebrew, must be as a non-root user
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
