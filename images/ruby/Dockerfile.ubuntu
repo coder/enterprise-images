@@ -1,7 +1,7 @@
 FROM codercom/enterprise-base:ubuntu
 
 # Run everything as root
-USER root
+USER 0
 
 # Install OpenSSL library
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y libssl-dev
@@ -11,4 +11,4 @@ COPY ./install-ruby.sh /tmp
 RUN chmod +x /tmp/install-ruby.sh && /tmp/install-ruby.sh
 
 # Set back to coder user
-USER coder
+USER 1000

@@ -1,7 +1,7 @@
 FROM codercom/enterprise-base:ubuntu
 
 # Run everything as root
-USER root
+USER 0
 
 # Install go
 RUN curl -L "https://dl.google.com/go/go1.17.1.linux-amd64.tar.gz" | tar -C /usr/local -xzvf -
@@ -15,4 +15,4 @@ ENV GOBIN $GOPATH/bin
 ENV PATH $PATH:$GOBIN
 
 # Set back to coder user
-USER coder
+USER 1000

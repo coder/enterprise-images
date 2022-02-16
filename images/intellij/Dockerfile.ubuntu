@@ -1,7 +1,7 @@
 FROM codercom/enterprise-java:ubuntu
 
 # Run everything as root
-USER root
+USER 0
 
 # Packages required for multi-editor support
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
@@ -19,4 +19,4 @@ RUN curl -L "https://download.jetbrains.com/product?code=IIC&latest&distribution
 RUN ln -s /opt/idea/bin/idea.sh /usr/bin/intellij-idea-community
 
 # Set back to coder user
-USER coder
+USER 1000
