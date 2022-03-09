@@ -38,7 +38,7 @@
         // ex. /api/v0/workspaces/[id]/proxy/apps/desktop/)
         path = window.location.pathname;
         path = path.replace(/^\/|\/$/g, "");
-        path = path + "/websockify";
+        path = path + "websockify";
         console.log(path);
       } else {
         console.error("window.location.pathname is undefined");
