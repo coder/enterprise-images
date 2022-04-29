@@ -24,7 +24,8 @@ ENV PATH ${PATH}:${ANDROID_SDK_ROOT}/platform-tools
 RUN yes | sdkmanager "platforms;android-29"
 
 # Packages required for multi-editor support
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
+RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y && \
+    apt-get install -y \
     libxtst6 \
     libxrender1 \
     libfontconfig1 \
