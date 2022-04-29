@@ -4,7 +4,8 @@ FROM codercom/enterprise-base:ubuntu
 USER root
 
 # Packages required for multi-editor support
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y \
+RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y && \
+    apt-get install -y \
     libxtst6 \
     libxrender1 \
     libfontconfig1 \
