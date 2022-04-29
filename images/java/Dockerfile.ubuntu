@@ -4,7 +4,8 @@ FROM codercom/enterprise-base:ubuntu
 USER root
 
 # Install JDK (OpenJDK 8)
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y openjdk-11-jdk
+RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y && \
+    apt-get install -y openjdk-11-jdk
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH $PATH:$JAVA_HOME/bin
 

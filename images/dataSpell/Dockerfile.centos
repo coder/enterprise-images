@@ -5,7 +5,7 @@ USER root
 
 # Install DataSpell.
 RUN mkdir -p /opt/dataspell
-RUN curl -L "https://download.jetbrains.com/python/jetbrains-data-spell-213.2094.12.tar.gz" | tar -C /opt/dataspell --strip-components 1 -xzvf -
+RUN curl -L "https://download-cdn.jetbrains.com/python/dataspell-2021.3.3.tar.gz" | tar -C /opt/dataspell --strip-components 1 -xzvf -
 
 # Add a binary to the PATH that points to the pycharm startup script.
 RUN ln -s /opt/dataspell/bin/dataspell.sh /usr/bin/dataspell

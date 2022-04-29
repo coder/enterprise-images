@@ -37,8 +37,7 @@
         // change the path depending on window.location (necessary for websockets to work on Coder's application path
         // ex. /api/v0/workspaces/[id]/proxy/apps/desktop/)
         path = window.location.pathname;
-        path = path.replace(/^\/|\/$/g, "");
-        path = path + "/websockify";
+        path = path.replace(/\/$/, "") + "/websockify";
         console.log(path);
       } else {
         console.error("window.location.pathname is undefined");
