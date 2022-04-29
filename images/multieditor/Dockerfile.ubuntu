@@ -4,13 +4,13 @@ FROM codercom/enterprise-base:ubuntu
 USER root
 
 # Packages required for multi-editor support
-RUN apt-get update && \
-    DEBIAN_FRONTEND="noninteractive" apt-get install -y \
-        libxtst6 \
-        libxrender1 \
-        libfontconfig1 \
-        libxi6 \
-        libgtk-3-0
+RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y && \
+    apt-get install -y \
+    libxtst6 \
+    libxrender1 \
+    libfontconfig1 \
+    libxi6 \
+    libgtk-3-0
 
 # Set back to coder user
 USER coder
