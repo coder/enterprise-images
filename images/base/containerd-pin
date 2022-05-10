@@ -1,0 +1,3 @@
+Package: containerd.io
+Pin: version 1.5.11-1
+Pin-Priority: 999
