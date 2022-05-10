@@ -2,6 +2,8 @@ FROM ubuntu:20.04
 
 SHELL ["/bin/bash", "-c"]
 
+COPY containerd-pin /etc/apt/preferences.d/
+
 # Install the Docker apt repository
 RUN apt-get update && \
     DEBIAN_FRONTEND="noninteractive" apt-get install --yes ca-certificates
