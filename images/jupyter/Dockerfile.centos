@@ -3,6 +3,10 @@ FROM codercom/enterprise-base:centos
 # Run everything as root
 USER root
 
+# Install required dependencies
+RUN dnf install --assumeyes \
+   platform-python-devel
+
 # Install jupyter
 RUN pip3 install jupyter-core==4.7.1 && \
     pip3 install jupyterlab
