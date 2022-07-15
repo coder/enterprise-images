@@ -8,7 +8,8 @@ RUN dnf install --assumeyes \
    platform-python-devel
 
 # Install jupyter
-RUN pip3 install jupyter-core==4.7.1 && \
+RUN pip install --upgrade setuptools && \
+    pip3 install jupyter-core==4.7.1 && \
     pip3 install jupyterlab && \
     pip3 install notebook
 
