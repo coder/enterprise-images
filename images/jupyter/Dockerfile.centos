@@ -8,8 +8,9 @@ RUN dnf install --assumeyes \
    platform-python-devel
 
 # Install jupyter
-RUN pip3 install jupyter-core==4.7.1 && \
-    pip3 install jupyterlab
+RUN pip3 install jupyter-core==4.11.1 && \
+    pip3 install jupyterlab==3.4.3 && \
+    pip3 install notebook==6.4.12
 
 # Set back to coder user
 USER coder
