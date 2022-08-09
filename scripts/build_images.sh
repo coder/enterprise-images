@@ -90,7 +90,7 @@ fi
 for image in "${IMAGES[@]}"; do
   image_dir="$PROJECT_ROOT/images/$image"
   image_file="Dockerfile.$TAG"
-  image_ref="cdr-arm64/enterprise-$image:$TAG"
+  image_ref="bravo68web/cdr-enterprise-$image:$TAG"
   image_path="$image_dir/$image_file"
 
   if [ ! -f "$image_path" ]; then
