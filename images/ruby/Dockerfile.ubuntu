@@ -1,4 +1,4 @@
-FROM codercom/enterprise-base:ubuntu
+FROM bravo68web/cdr-enterprise-base:ubuntu
 
 # Run everything as root
 USER root

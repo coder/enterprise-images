@@ -1,6 +1,6 @@
 # Enterprise Jupyter
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/codercom/enterprise-jupyter?label=codercom%2Fenterprise-jupyter)](https://hub.docker.com/r/codercom/enterprise-jupyter)
+[![Docker Pulls](https://img.shields.io/docker/pulls/bravo68web/cdr-enterprise-jupyter?label=codercom%2Fenterprise-jupyter)](https://hub.docker.com/r/bravo68web/cdr-enterprise-jupyter)
 
 ## Description
 

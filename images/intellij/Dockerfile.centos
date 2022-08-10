@@ -1,4 +1,4 @@
-FROM codercom/enterprise-java:centos
+FROM bravo68web/cdr-enterprise-java:centos
 
 # Run everything as root
 USER root

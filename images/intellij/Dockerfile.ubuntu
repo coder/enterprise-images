@@ -1,4 +1,4 @@
-FROM codercom/enterprise-java:ubuntu
+FROM bravo68web/cdr-enterprise-java:ubuntu
 
 # Run everything as root
 USER root

@@ -1,3 +1,3 @@
-FROM codercom/enterprise-base:ubuntu
+FROM bravo68web/cdr-enterprise-base:ubuntu
 
 COPY [ "configure", "/coder/configure" ]

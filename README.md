@@ -31,8 +31,8 @@ solid out-of-the-box developer experience:
 ## Images on Docker Hub
 
 Each of these images is also published to Docker Hub under the
-`codercom/enterprise-[name]` repository. For example, `intellij` is available at
-https://hub.docker.com/r/codercom/enterprise-intellij. The tag is taken from the
+`bravo68web/cdr-enterprise-[name]` repository. For example, `intellij` is available at
+https://hub.docker.com/r/bravo68web/cdr-enterprise-intellij. The tag is taken from the
 file extension of the Dockerfile. For example, `intellij/Dockerfile.ubuntu` is
 under the `ubuntu` tag.
 

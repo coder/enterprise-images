@@ -1,4 +1,4 @@
-FROM codercom/enterprise-multieditor:ubuntu
+FROM bravo68web/cdr-enterprise-multieditor:ubuntu
 
 # Run everything as root
 USER root

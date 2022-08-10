@@ -1,4 +1,4 @@
-FROM codercom/enterprise-golang:centos
+FROM bravo68web/cdr-enterprise-golang:centos
 
 # Run everything as root
 USER root

@@ -1,4 +1,4 @@
-FROM codercom/enterprise-base:ubuntu
+FROM bravo68web/cdr-enterprise-base:ubuntu
 
 # Run everything as root
 USER root
@@ -6,7 +6,7 @@ USER root
 # Install JDK (OpenJDK 8)
 RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y && \
     apt-get install -y openjdk-11-jdk
-ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-armd64
 ENV PATH $PATH:$JAVA_HOME/bin
 
 # Install Maven

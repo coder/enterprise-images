@@ -1,10 +1,10 @@
-FROM codercom/enterprise-base:ubuntu
+FROM bravo68web/cdr-enterprise-base:ubuntu
 
 # Run everything as root
 USER root
 
 # Install go
-RUN curl -L "https://dl.google.com/go/go1.17.1.linux-amd64.tar.gz" | tar -C /usr/local -xzvf -
+RUN curl -L "https://dl.google.com/go/go1.17.1.linux-arm64.tar.gz" | tar -C /usr/local -xzvf -
 
 # Setup go env vars
 ENV GOROOT /usr/local/go

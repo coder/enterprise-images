@@ -1,4 +1,4 @@
-FROM codercom/enterprise-multieditor:centos
+FROM bravo68web/cdr-enterprise-multieditor:centos
 
 # Run everything as root
 USER root

@@ -1,4 +1,4 @@
-FROM codercom/enterprise-base:centos
+FROM bravo68web/cdr-enterprise-base:centos
 
 # Run everything as root
 USER root

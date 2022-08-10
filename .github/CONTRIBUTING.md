@@ -7,7 +7,7 @@ instance, an Ubuntu-based version of your image would be in `Dockerfile.ubuntu`.
 New images should extend from existing images whenever possible, e.g.
 
 ```Dockerfile
-FROM codercom/enterprise-base:ubuntu
+FROM bravo68web/cdr-enterprise-base:ubuntu
 
 # Rest of your image...
 ```

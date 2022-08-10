@@ -1,6 +1,6 @@
 # Enterprise PyCharm
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/codercom/enterprise-pycharm?label=codercom%2Fenterprise-pycharm)](https://hub.docker.com/r/codercom/enterprise-pycharm)
+[![Docker Pulls](https://img.shields.io/docker/pulls/bravo68web/cdr-enterprise-pycharm?label=codercom%2Fenterprise-pycharm)](https://hub.docker.com/r/bravo68web/cdr-enterprise-pycharm)
 
 ## Description
 

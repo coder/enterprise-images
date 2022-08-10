@@ -1,6 +1,6 @@
 # Enterprise Android
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/codercom/enterprise-android?label=codercom%2Fenterprise-android)](https://hub.docker.com/r/codercom/enterprise-android)
+[![Docker Pulls](https://img.shields.io/docker/pulls/bravo68web/cdr-enterprise-android?label=codercom%2Fenterprise-android)](https://hub.docker.com/r/bravo68web/cdr-enterprise-android)
 
 ## Description
 

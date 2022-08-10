@@ -1,6 +1,6 @@
 # Enterprise WebStorm
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/codercom/enterprise-webstorm?label=codercom%2Fenterprise-webstorm)](https://hub.docker.com/r/codercom/enterprise-webstorm)
+[![Docker Pulls](https://img.shields.io/docker/pulls/bravo68web/cdr-enterprise-webstorm?label=codercom%2Fenterprise-webstorm)](https://hub.docker.com/r/bravo68web/cdr-enterprise-webstorm)
 
 ## Description
 
