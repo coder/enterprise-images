@@ -39,7 +39,7 @@ permissions:
 jobs:
   # Quick checks, running linters, checking formatting, etc
   quick:
-    runs-on: ubuntu-20.04
+    runs-on: ARM64
     steps:
       - name: Cancel previous runs
         if: github.event_name == 'pull_request'
@@ -60,7 +60,7 @@ jobs:
         run: yarn format:check
 
   images:
-    runs-on: ubuntu-20.04
+    runs-on: ARM64
     strategy:
       matrix:
         job:
