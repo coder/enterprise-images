@@ -5,7 +5,7 @@ USER root
 
 # Install webstorm.
 RUN mkdir -p /opt/webstorm
-RUN curl -L "https://download.jetbrains.com/product?code=WS&latest&distribution=linux" | tar -C /opt/webstorm --strip-components 1 -xzvf -
+RUN curl -L "https://download.jetbrains.com/webstorm/WebStorm-2021.3.3.tar.gz" | tar -C /opt/webstorm --strip-components 1 -xzvf -
 
 # Add a binary to the PATH that points to the webstorm startup script.
 RUN ln -s /opt/webstorm/bin/webstorm.sh /usr/bin/webstorm

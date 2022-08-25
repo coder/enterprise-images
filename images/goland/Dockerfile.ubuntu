@@ -14,7 +14,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y && \
 
 # Install goland.
 RUN mkdir -p /opt/goland
-RUN curl -L "https://download.jetbrains.com/product?code=GO&latest&distribution=linux" | tar -C /opt/goland --strip-components 1 -xzvf -
+RUN curl -L "https://download.jetbrains.com/go/goland-2021.3.5.tar.gz" | tar -C /opt/goland --strip-components 1 -xzvf -
 
 # Add a binary to the PATH that points to the goland startup script.
 RUN ln -s /opt/goland/bin/goland.sh /usr/bin/goland
