@@ -13,6 +13,7 @@ IMAGES=(
   "multieditor"
   "node"
   "ruby"
+  "rust"
   "vnc"
 
   # We can build these images in any order
