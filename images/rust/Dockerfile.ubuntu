@@ -1,5 +1,4 @@
 FROM codercom/enterprise-base:ubuntu
-ARG RUST_VERSION=1.66.0
 
 # Run everything as root
 USER root
