@@ -94,7 +94,7 @@ if [ -f "$OUTPUT_FILE" ]; then
 fi
 
 tmp_dir="$(mktemp -d)"
-trap 'rm -rf $tmp_dir' EXIT
+trap 'rm -rf "$tmp_dir"' EXIT
 
 for image in "${IMAGES[@]}"; do
   image_ref="codercom/enterprise-${image}:${TAG}"
