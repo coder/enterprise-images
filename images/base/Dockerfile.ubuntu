@@ -34,7 +34,8 @@ RUN apt-get update && \
       systemd-sysv \
       unzip \
       vim \
-      wget && \
+      wget \
+      rsync && \
     # Install latest Git using their official PPA
     add-apt-repository ppa:git-core/ppa && \
     DEBIAN_FRONTEND="noninteractive" apt-get install --yes git

@@ -22,7 +22,8 @@ RUN dnf install --assumeyes epel-release && \
       sudo \
       unzip \
       vim \
-      wget && \
+      wget \
+      rsync && \
     dnf clean all
 
 # We use an old containerd.io because it contains a version of runc that works
