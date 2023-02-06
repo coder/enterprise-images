@@ -25,7 +25,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  actions: none
+  actions: read
   checks: none
   contents: read
   deployments: none
@@ -33,7 +33,7 @@ permissions:
   packages: none
   pull-requests: none
   repository-projects: none
-  security-events: none
+  security-events: write
   statuses: none
 
 jobs:
