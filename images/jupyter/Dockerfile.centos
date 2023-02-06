@@ -10,9 +10,9 @@ RUN dnf install --assumeyes \
 # Install jupyter
 RUN python3 -m pip install --upgrade pip && \
     pip3 install --upgrade setuptools && \
-    pip3 install jupyter-core==4.7.1 && \
-    pip3 install jupyterlab && \
-    pip3 install notebook
+    pip3 install jupyterlab==3.2.9 && \
+    pip3 install jupyter-core==4.6.3 && \
+    pip3 install notebook==6.4.10
 
 # Set back to coder user
 USER coder
