@@ -67,7 +67,7 @@ jobs:
           - centos
           - ubuntu
       fail-fast: false
-    name: images/${{ matrix.job}}
+    name: images/${{ matrix.job }}
     steps:
       - name: Cancel previous runs
         if: github.event_name == 'pull_request'
@@ -91,5 +91,5 @@ jobs:
       - name: Push images to Docker Hub
         if: github.event_name != 'pull_request'
         run: |
-          ${{ github.workspace}}/scripts/push_images.sh \
-            --tag=${{ matrix.job}}
+          ${{ github.workspace }}/scripts/push_images.sh \
+            --tag=${{ matrix.job }}

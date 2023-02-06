@@ -1,0 +1,58 @@
+name: security
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+on:
+  push:
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+  schedule:
+    # Run every week at 18:03 on Saturday.
+    - cron: '03 18 * * 6'
+
+# Cancel in-progress runs for pull requests when developers push
+# additional changes
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-security
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  images:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        job:
+          - centos
+          - ubuntu
+      fail-fast: false
+    name: images/${{ matrix.job }}
+    steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Trivy
+        run: |
+          wget -O trivy.deb https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.deb
+          sudo dpkg -i trivy.deb
+          rm trivy.deb
+
+      - name: Build ${{ matrix.job }} images
+        run: |
+          ${{ github.workspace }}/scripts/build_images.sh \
+            --tag=${{ matrix.job }}
+
+      - name: Scan ${{ matrix.job }} images
+        run: |
+          ${{ github.workspace }}/scripts/scan_images.sh \
+            --tag=${{ matrix.job }}
