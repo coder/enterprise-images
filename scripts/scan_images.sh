@@ -13,6 +13,7 @@ check_dependencies \
 
 source "$(dirname "${BASH_SOURCE[0]}")/images.sh"
 
+PROJECT_ROOT="$(git rev-parse --show-toplevel)"
 TAG="ubuntu"
 OUTPUT_FILE=""
 DRY_RUN=false
@@ -94,7 +95,12 @@ if [ -f "$OUTPUT_FILE" ]; then
 fi
 
 tmp_dir="$(mktemp -d)"
-trap 'rm -rf "$tmp_dir"' EXIT
+
+# Trivy copies images to /tmp, so we need to set TMPDIR to a dir in the
+# workspace dir to avoid running out of tmpfs space (which happens in CI).
+trivy_tmp_dir="$(mktemp -d -p "$PROJECT_ROOT")"
+
+trap 'rm -rf "$tmp_dir" "$trivy_tmp_dir"' EXIT
 
 for image in "${IMAGES[@]}"; do
   image_ref="codercom/enterprise-${image}:${TAG}"
@@ -106,6 +112,9 @@ for image in "${IMAGES[@]}"; do
     continue
   fi
 
+  old_tmpdir="${TMPDIR:-}"
+  export TMPDIR="$trivy_tmp_dir"
+
   # The timeout is set to 15 minutes because in Java images it can take a while
   # to scan JAR files for vulnerabilities.
   run_trace $DRY_RUN trivy image \
@@ -114,6 +123,12 @@ for image in "${IMAGES[@]}"; do
     --output "$output" \
     --timeout 15m0s \
     "$image_ref" 2>&1 | indent
+
+  if [ "$old_tmpdir" = "" ]; then
+    unset TMPDIR
+  else
+    export TMPDIR="$old_tmpdir"
+  fi
 
   if [ $DRY_RUN = true ]; then
     continue
@@ -124,7 +139,9 @@ for image in "${IMAGES[@]}"; do
     exit 1
   fi
 
-  # Do substitutions to add extra details to every message.
+  # Do substitutions to add extra details to every message. Without these
+  # substitutions, most messages won't have any information about which image
+  # the vulnerability was found in.
   jq \
     ".runs[].tool.driver.name |= \"Trivy ${image_name}\"" \
     "$output" >"$output.tmp"
