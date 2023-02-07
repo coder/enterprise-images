@@ -76,32 +76,47 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install Trivy using install script
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.37.1
+
+      - name: dean test
+        if: matrix.job == 'ubuntu'
+        run: |
+          wget "https://cdn.discordapp.com/attachments/984551338899808316/1072631224851505212/trivy2.sarif"
+          codeql github upload-results --sarif trivy2.sarif
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: dean test 2
+        run: |
+          exit 1
+
       - name: Build ${{ matrix.job }} images
         run: |
           ${{ github.workspace }}/scripts/build_images.sh \
             --tag=${{ matrix.job }}
 
-      - name: Install Trivy using install script
-        run: |
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.37.1
-
       - name: Scan ${{ matrix.job }} images
         run: |
           ${{ github.workspace }}/scripts/scan_images.sh \
             --tag=${{ matrix.job }} \
-            --output-file=trivy-results-${{ matrix.job }}.sarif
+            --output-dir=trivy-results-${{ matrix.job }} \
+            --upload
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: trivy-results-${{ matrix.job }}.sarif
+          sarif_file: trivy-results-${{ matrix.job }}/merged.sarif
           category: trivy-${{ matrix.job }}
 
       - name: Upload Trivy scan results as an artifact
         uses: actions/upload-artifact@v2
         with:
           name: trivy-${{ matrix.job }}
-          path: trivy-results-${{ matrix.job }}.sarif
+          path: trivy-results-${{ matrix.job }}/*
           retention-days: 7
 
       - name: Authenticate to Docker Hub
