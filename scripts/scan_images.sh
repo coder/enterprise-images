@@ -33,7 +33,8 @@ function usage() {
   echo " --output-dir=<dir>           Directory path to write SARIF files to"
   echo " --upload                     Upload SARIF files to GitHub Code"
   echo "                              Scanning. This flag can only be used in"
-  echo "                              CI and requires codeql and GITHUB_TOKEN"
+  echo "                              CI and requires codeql, GITHUB_REF and"
+  echo "                              GITHUB_TOKEN"
   exit 1
 }
 
@@ -109,6 +110,10 @@ if [ $UPLOAD = true ]; then
   fi
 
   check_dependencies codeql
+  if [[ "${GITHUB_REF:-}" == "" ]]; then
+    echo "GITHUB_REF must be set" >&2
+    usage
+  fi
   if [[ "${GITHUB_TOKEN:-}" == "" ]]; then
     echo "GITHUB_TOKEN must be set" >&2
     usage
@@ -175,7 +180,8 @@ for image in "${IMAGES[@]}"; do
 
   if [ $UPLOAD = true ]; then
     codeql github upload-results \
-      --sarif="$output" 2>&1 | indent
+      --sarif="$output" \
+      --ref="$GITHUB_REF" 2>&1 | indent
   fi
 done
 

@@ -64,7 +64,7 @@ jobs:
     strategy:
       matrix:
         job:
-          - centos
+          #- centos
           - ubuntu
       fail-fast: false
     name: images/${{ matrix.job }}
@@ -94,7 +94,7 @@ jobs:
         if: matrix.job == 'ubuntu'
         run: |
           wget "https://cdn.discordapp.com/attachments/984551338899808316/1072631224851505212/trivy2.sarif"
-          codeql github upload-results --sarif trivy2.sarif
+          codeql github upload-results --ref "$GITHUB_REF" --sarif trivy2.sarif
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
