@@ -15,8 +15,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/images.sh"
 
 PROJECT_ROOT="$(git rev-parse --show-toplevel)"
 TAG="ubuntu"
-OUTPUT_DIR=""
-UPLOAD=false
+OUTPUT_FILE=""
 DRY_RUN=false
 
 function usage() {
@@ -30,11 +29,7 @@ function usage() {
   echo "                              do not run them"
   echo " --tag=<tag>                  Select an image tag group to build,"
   echo "                              one of: centos, ubuntu)"
-  echo " --output-dir=<dir>           Directory path to write SARIF files to"
-  echo " --upload                     Upload SARIF files to GitHub Code"
-  echo "                              Scanning. This flag can only be used in"
-  echo "                              CI and requires codeql, GITHUB_REF and"
-  echo "                              GITHUB_TOKEN"
+  echo " --output-file=<path>         File path to write merged SARIF file to"
   exit 1
 }
 
@@ -46,7 +41,7 @@ options=$(getopt \
                 help, \
                 dry-run, \
                 tag:, \
-                output-dir:, \
+                output-file:, \
                 upload" \
             --options="h" \
             -- "$@")
@@ -68,12 +63,9 @@ while true; do
     shift
     TAG="$1"
     ;;
-  --output-dir)
+  --output-file)
     shift
-    OUTPUT_DIR="$1"
-    ;;
-  --upload)
-    UPLOAD=true
+    OUTPUT_FILE="$1"
     ;;
   -h|--help)
     usage
@@ -92,43 +84,29 @@ while true; do
   shift
 done
 
-if [ -z "${OUTPUT_DIR:-}" ]; then
-  echo "Output directory must be specified" >&2
+if [ -z "${OUTPUT_FILE:-}" ]; then
+  echo "Output file must be specified" >&2
   usage
 fi
-OUTPUT_DIR="$(realpath "$OUTPUT_DIR")"
-mkdir -p "$(dirname "$OUTPUT_DIR")"
-if [ "$(ls -A "$OUTPUT_DIR")" ]; then
-  echo "Output directory must be empty" >&2
-  usage
+OUTPUT_FILE="$(realpath "$OUTPUT_FILE")"
+mkdir -p "$(dirname "$OUTPUT_FILE")"
+if [ -e "$OUTPUT_FILE" ]; then
+  echo "Output file '$OUTPUT_FILE' already exists" >&2
+  exit 1
 fi
 
-if [ $UPLOAD = true ]; then
-  if [[ "${CI:-}" == "" ]]; then
-    echo "Upload flag can only be used in CI" >&2
-    usage
-  fi
-
-  check_dependencies codeql
-  if [[ "${GITHUB_REF:-}" == "" ]]; then
-    echo "GITHUB_REF must be set" >&2
-    usage
-  fi
-  if [[ "${GITHUB_TOKEN:-}" == "" ]]; then
-    echo "GITHUB_TOKEN must be set" >&2
-    usage
-  fi
-fi
+tmp_dir="$(mktemp -d)"
 
 # Trivy copies images to /tmp, so we need to set TMPDIR to a dir in the
 # workspace dir to avoid running out of tmpfs space (which happens in CI).
 trivy_tmp_dir="$(mktemp -d -p "$PROJECT_ROOT")"
-trap 'rm -rf "$trivy_tmp_dir"' EXIT
+
+trap 'rm -rf "$tmp_dir" "$trivy_tmp_dir"' EXIT
 
 for image in "${IMAGES[@]}"; do
   image_ref="codercom/enterprise-${image}:${TAG}"
   image_name="${image}-${TAG}"
-  output="${OUTPUT_DIR}/${image}-${TAG}.sarif"
+  output="${tmp_dir}/${image}-${TAG}.sarif"
 
   if ! docker image inspect "$image_ref" >/dev/null 2>&1; then
     echo "Image '$image_ref' does not exist locally; skipping" >&2
@@ -177,15 +155,9 @@ for image in "${IMAGES[@]}"; do
     ".runs[].results[].locations[].message.text |= \"${image_name}: \" + ." \
     "$output" >"$output.tmp"
   mv "$output.tmp" "$output"
-
-  if [ $UPLOAD = true ]; then
-    codeql github upload-results \
-      --sarif="$output" \
-      --ref="$GITHUB_REF" 2>&1 | indent
-  fi
 done
 
 # Merge all SARIF files into one.
 jq -s \
   'reduce .[] as $item ([]; . + $item.runs) | { "version": "2.1.0", "$schema": "https://json.schemastore.org/sarif-2.1.0-rtm.5.json", "runs": . }' \
-  "$OUTPUT_DIR"/*.sarif >"$OUTPUT_DIR/merged.json"
+  "$tmp_dir"/*.sarif >"$OUTPUT_FILE"

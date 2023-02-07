@@ -80,28 +80,6 @@ jobs:
         run: |
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.37.1
 
-      # We don't use the CodeQL actions to upload SARIF files because they can
-      # only upload one at a time. We need to be able to programmatically upload
-      # multiple SARIF files, so we use the CodeQL CLI directly.
-      - name: Install CodeQL CLI
-        run: |
-          wget "https://github.com/github/codeql-action/releases/download/codeql-bundle-20230207/codeql-bundle-linux64.tar.gz"
-          sudo tar -C /opt -xzf codeql-bundle-linux64.tar.gz
-          rm -f codeql-bundle-linux64.tar.gz
-          echo "/opt/codeql" >> $GITHUB_PATH
-
-      - name: dean test
-        if: matrix.job == 'ubuntu'
-        run: |
-          wget "https://cdn.discordapp.com/attachments/984551338899808316/1072637167790207036/x.sarif"
-          codeql github upload-results --ref "$GITHUB_REF" --sarif x.sarif
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: dean test 2
-        run: |
-          exit 1
-
       - name: Build ${{ matrix.job }} images
         run: |
           ${{ github.workspace }}/scripts/build_images.sh \
@@ -111,22 +89,19 @@ jobs:
         run: |
           ${{ github.workspace }}/scripts/scan_images.sh \
             --tag=${{ matrix.job }} \
-            --output-dir=trivy-results-${{ matrix.job }} \
-            --upload
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            --output-file=trivy-results-${{ matrix.job }}.sarif
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: trivy-results-${{ matrix.job }}/merged.sarif
+          sarif_file: trivy-results-${{ matrix.job }}.sarif
           category: trivy-${{ matrix.job }}
 
       - name: Upload Trivy scan results as an artifact
         uses: actions/upload-artifact@v2
         with:
           name: trivy-${{ matrix.job }}
-          path: trivy-results-${{ matrix.job }}/*
+          path: trivy-results-${{ matrix.job }}.sarif
           retention-days: 7
 
       - name: Authenticate to Docker Hub
