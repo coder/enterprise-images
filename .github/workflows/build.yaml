@@ -81,6 +81,10 @@ jobs:
           ${{ github.workspace }}/scripts/build_images.sh \
             --tag=${{ matrix.job }}
 
+      - name: Install Trivy using install script
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.37.1
+
       - name: Scan ${{ matrix.job }} images
         run: |
           ${{ github.workspace }}/scripts/scan_images.sh \
