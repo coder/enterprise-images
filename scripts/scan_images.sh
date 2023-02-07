@@ -106,10 +106,13 @@ for image in "${IMAGES[@]}"; do
     continue
   fi
 
+  # The timeout is set to 15 minutes because in Java images it can take a while
+  # to scan JAR files for vulnerabilities.
   run_trace $DRY_RUN trivy image \
     --severity CRITICAL,HIGH \
     --format sarif \
     --output "$output" \
+    --timeout 15m0s \
     "$image_ref" 2>&1 | indent
 
   if [ $DRY_RUN = true ]; then
