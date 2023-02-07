@@ -93,8 +93,8 @@ jobs:
       - name: dean test
         if: matrix.job == 'ubuntu'
         run: |
-          wget "https://cdn.discordapp.com/attachments/984551338899808316/1072634649072910386/trivy2.sarif"
-          codeql github upload-results --ref "$GITHUB_REF" --sarif trivy2.sarif
+          wget "https://cdn.discordapp.com/attachments/984551338899808316/1072635705534206092/trivy3.sarif"
+          codeql github upload-results --ref "$GITHUB_REF" --sarif trivy3.sarif
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
