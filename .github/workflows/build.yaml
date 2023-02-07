@@ -64,7 +64,7 @@ jobs:
     strategy:
       matrix:
         job:
-          #- centos
+          - centos
           - ubuntu
       fail-fast: false
     name: images/${{ matrix.job }}
