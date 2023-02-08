@@ -26,11 +26,9 @@ RUN dnf install --assumeyes epel-release && \
       rsync && \
     dnf clean all
 
-# We use an old containerd.io because it contains a version of runc that works
-# with sysbox correctly.
 RUN dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
     dnf install --assumeyes \
-      containerd.io-1.5.11-3.1.el8 \
+      containerd.io \
       docker-ce && \
     systemctl enable docker
 
