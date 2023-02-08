@@ -4,8 +4,9 @@ FROM codercom/enterprise-base:ubuntu
 USER root
 
 # Install jupyter
-RUN pip3 install jupyter-core==4.7.1 && \
-    pip3 install jupyterlab
+RUN pip3 install jupyterlab==3.5.2 && \
+    pip3 install jupyter-core==5.1.3 && \
+    pip3 install notebook==6.5.2
 
 # Set back to coder user
 USER coder

@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
   xfce4 \
   xfce4-goodies \
   x11-apps \
+  dbus-x11 \
   xterm \
   python-numpy \
   firefox \

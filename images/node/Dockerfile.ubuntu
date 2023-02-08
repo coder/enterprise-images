@@ -5,7 +5,8 @@ USER root
 
 # Install whichever Node version is LTS
 RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y nodejs
+RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y && \
+    apt-get install -y nodejs
 
 # Install Yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -

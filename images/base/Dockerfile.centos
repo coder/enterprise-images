@@ -1,4 +1,4 @@
-FROM centos:8
+FROM quay.io/centos/centos:stream8
 
 SHELL ["/bin/bash", "-c"]
 
@@ -22,16 +22,22 @@ RUN dnf install --assumeyes epel-release && \
       sudo \
       unzip \
       vim \
-      wget && \
+      wget \
+      rsync && \
     dnf clean all
 
 RUN dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
-    dnf install --assumeyes docker-ce && \
+    dnf install --assumeyes \
+      containerd.io \
+      docker-ce && \
     systemctl enable docker
 
 # Add docker-compose
-RUN curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN curl -L "https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 RUN chmod +x /usr/local/bin/docker-compose
+
+# Make typing unicode characters in the terminal work.
+ENV LANG en_US.UTF-8
 
 # Add a user `coder` so that you're not developing as the `root` user
 RUN useradd coder \

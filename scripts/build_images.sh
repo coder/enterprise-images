@@ -25,7 +25,7 @@ function usage() {
   echo " --dry-run                    Show commands that would run, but"
   echo "                              do not run them"
   echo " --tag=<tag>                  Select an image tag group to build,"
-  echo "                              one of: arch, centos, ubuntu)"
+  echo "                              one of: centos, ubuntu)"
   echo " --quiet                      Suppress container build output"
   exit 1
 }

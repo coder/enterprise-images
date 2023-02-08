@@ -3,22 +3,25 @@
 set -euo pipefail
 
 IMAGES=(
-  # These must be built first because others build FROM these
+  # This image must always be built first.
   "base"
+
+  # These must be built first because others build FROM these
+  "configure"
+  "golang"
+  "java"
   "multieditor"
+  "node"
+  "ruby"
+  "rust"
+  "vnc"
 
   # We can build these images in any order
   "android"
-  "configure"
-  "goland"
-  "golang"
-  "intellij"
-  "java"
-  "jupyter"
-  "node"
-  "pycharm"
-  "ruby"
-  "vnc"
-  "webstorm"
   "clion"
+  "goland"
+  "intellij"
+  "jupyter"
+  "pycharm"
+  "webstorm"
 )
