@@ -51,7 +51,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: 16.x
 
       - name: Install Node.js modules
         run: yarn install
@@ -98,7 +98,7 @@ jobs:
           category: trivy-${{ matrix.job }}
 
       - name: Upload Trivy scan results as an artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: trivy-${{ matrix.job }}
           path: trivy-results-${{ matrix.job }}.sarif
