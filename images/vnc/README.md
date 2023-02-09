@@ -2,7 +2,7 @@
 
 A [sample image](https://github.com/cdr/enterprise-images/tree/main/images/vnc)
 for Coder that uses [noVNC](https://github.com/novnc/noVNC) as the client and
-[TigerVNC](https://tigervnc.org) as the server. You can find it on
+[TurboVNC](https://www.turbovnc.org/) as the server. You can find it on
 [Dockerhub](https://hub.docker.com/r/codercom/enterprise-vnc).
 
 ## To connect
