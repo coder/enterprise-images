@@ -7,7 +7,7 @@
   "devDependencies": {
     "husky": "8.0.3",
     "lint-staged": "13.1.1",
-    "prettier": "2.8.3"
+    "prettier": "2.8.4"
   },
   "lint-staged": {
     "*.{css,html,js,json,jsx,ts,tsx,yaml,yml}": [
