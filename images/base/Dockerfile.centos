@@ -3,8 +3,8 @@ FROM quay.io/centos/centos:stream8
 SHELL ["/bin/bash", "-c"]
 
 # Add the EPEL repolist
-RUN dnf install --assumeyes epel-release && \
-    dnf upgrade --assumeyes --refresh && \
+RUN dnf upgrade --assumeyes --refresh && \
+    dnf install --assumeyes epel-release && \
     dnf install --assumeyes \
       bash \
       ca-certificates \
