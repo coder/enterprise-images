@@ -33,7 +33,7 @@ RUN dnf config-manager --add-repo https://download.docker.com/linux/centos/docke
     systemctl enable docker
 
 # Add docker-compose
-RUN curl -L "https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN curl -L "https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 RUN chmod +x /usr/local/bin/docker-compose
 
 # Make typing unicode characters in the terminal work.
@@ -51,5 +51,5 @@ RUN useradd coder \
 USER coder
 
 # install Homebrew, must be as a non-root user
-RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+RUN HOMEBREW_INSTALL_FROM_API=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ENV PATH /home/linuxbrew/.linuxbrew/bin:${PATH}
