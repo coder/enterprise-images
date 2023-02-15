@@ -56,7 +56,7 @@ RUN HOMEBREW_INSTALL_FROM_API=1 /bin/bash -c "$(curl -fsSL https://raw.githubuse
 USER ROOT
 
 # install our deprecation message wrapper for homebrew
-COPY --chown=root:root --chmod=755 homebrew-wrapper.sh /usr/local/bin/brew
+COPY homebrew-wrapper.sh /usr/local/bin/brew
 # remove the bundled ruby from homebrew to save space, homebrew reinstalls
 # anyways
 RUN rm -rf /home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby
