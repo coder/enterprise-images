@@ -52,4 +52,13 @@ USER coder
 
 # install Homebrew, must be as a non-root user
 RUN HOMEBREW_INSTALL_FROM_API=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-ENV PATH /home/linuxbrew/.linuxbrew/bin:${PATH}
+
+USER ROOT
+
+# install our deprecation message wrapper for homebrew
+COPY --chown=root:root --chmod=755 homebrew-wrapper.sh /usr/local/bin/brew
+# remove the bundled ruby from homebrew to save space, homebrew reinstalls
+# anyways
+RUN rm -rf /home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/vendor/portable-ruby
+
+USER CODER
