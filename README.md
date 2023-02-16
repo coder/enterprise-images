@@ -40,4 +40,4 @@ See our [contributing guide](.github/CONTRIBUTING.md).
 
 ## Changelog
 
-Reference our [changelog](./changelod.md) for updates made to images.
+Reference our [changelog](./changelog.md) for updates made to images.
