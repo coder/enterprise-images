@@ -28,7 +28,7 @@ function usage() {
   echo " --dry-run                    Show commands that would run, but"
   echo "                              do not run them"
   echo " --tag=<tag>                  Select an image tag group to build,"
-  echo "                              one of: centos, ubuntu)"
+  echo "                              e.g. ubuntu)"
   echo " --output-file=<path>         File path to write merged SARIF file to"
   exit 1
 }
