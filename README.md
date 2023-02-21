@@ -37,3 +37,7 @@ under the `ubuntu` tag.
 ## Contributing
 
 See our [contributing guide](.github/CONTRIBUTING.md).
+
+## Changelog
+
+Reference our [changelog](./changelog.md) for updates made to images.
