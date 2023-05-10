@@ -21,6 +21,7 @@ IMAGES=(
   "clion"
   "goland"
   "intellij"
+  "minimal"
   "jupyter"
   "pycharm"
   "webstorm"
