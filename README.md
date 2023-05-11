@@ -26,6 +26,9 @@ solid out-of-the-box developer experience:
 - python3 & pip3
 - gcc & gcc-c++ & make
 
+The one exception is the `minimal` image, which contains only bash, curl, git, and
+sudo.
+
 ## Images on Docker Hub
 
 Each of these images is also published to Docker Hub under the
