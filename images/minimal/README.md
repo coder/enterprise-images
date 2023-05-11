@@ -6,5 +6,6 @@ This image only contains the bare necessities:
 - curl
 - ca-certificates
 - git
+- sudo
 
 It is mainly meant for testing purposes.
