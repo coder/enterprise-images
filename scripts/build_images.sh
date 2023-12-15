@@ -87,8 +87,6 @@ if [ $QUIET = true ]; then
   )
 fi
 
-pwd
-
 for image in "${IMAGES[@]}"; do
   image_dir="$PROJECT_ROOT/images/$image"
   image_file="Dockerfile.$TAG"
