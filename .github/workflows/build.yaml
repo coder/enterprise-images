@@ -60,7 +60,8 @@ jobs:
         run: yarn format:check
 
   images:
-    runs-on: ubuntu-latest-8-cores
+    # runs-on: ubuntu-latest-8-cores
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
     name: images/ubuntu
