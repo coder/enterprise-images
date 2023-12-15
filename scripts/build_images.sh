@@ -87,6 +87,8 @@ if [ $QUIET = true ]; then
   )
 fi
 
+pwd
+
 for image in "${IMAGES[@]}"; do
   image_dir="$PROJECT_ROOT/images/$image"
   image_file="Dockerfile.$TAG"
@@ -101,7 +103,7 @@ for image in "${IMAGES[@]}"; do
   fi
   
   run_trace $DRY_RUN docker buildx bake \
-    -f docker-bake.hcl \
+    -f "$PROJECT_ROOT/docker-bake.hcl" \
     --set build.dockerfile="$image_path" \
     --set cross.tags="$image_ref" \
     cross
