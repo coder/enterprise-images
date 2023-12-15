@@ -8,6 +8,6 @@ target "build" {
 
 target "cross" {
   inherits = ["build"]
-  platforms = ["linux/amd64"]
+  platforms = ["linux/amd64", "linux/arm64"]
   tags = ["ghcr.io/tuananh/coder-test"]
 }
