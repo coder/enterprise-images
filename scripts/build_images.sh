@@ -99,10 +99,11 @@ for image in "${IMAGES[@]}"; do
     fi
     continue
   fi
-
-  run_trace $DRY_RUN docker build \
-    "${docker_flags[@]}" \
-    "$image_dir" \
-    --file="$image_path" \
-    --tag="$image_ref" \| indent
+  
+  run_trace $DRY_RUN docker buildx bake \
+    -f docker-bake.hcl \
+    --set build.dockerfile="$image_path" \
+    --set cross.tags="$image_ref" \
+    cross
+    
 done
