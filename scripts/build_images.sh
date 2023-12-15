@@ -102,6 +102,8 @@ for image in "${IMAGES[@]}"; do
     continue
   fi
   
+  cd "$image_dir"
+  
   run_trace $DRY_RUN docker buildx bake \
     -f "$PROJECT_ROOT/docker-bake.hcl" \
     --set build.dockerfile="$image_path" \
