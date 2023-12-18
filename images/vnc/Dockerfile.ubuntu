@@ -105,6 +105,8 @@ RUN $VNC_SETUP_SCRIPTS/set_user_permission.sh $VNC_ROOT_DIR \
 COPY ["./coder", "/coder"]
 RUN chmod +x /coder/configure
 
+COPY deprecated.txt /etc/motd
+
 USER coder
 
 RUN $VNC_SETUP_SCRIPTS/no_vnc.sh

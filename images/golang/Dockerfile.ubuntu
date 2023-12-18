@@ -14,5 +14,7 @@ ENV GOPATH /home/coder/go
 ENV GOBIN $GOPATH/bin
 ENV PATH $PATH:$GOBIN
 
+COPY deprecated.txt /etc/motd
+
 # Set back to coder user
 USER coder

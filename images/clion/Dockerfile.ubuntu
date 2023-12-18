@@ -10,5 +10,7 @@ RUN curl -L "https://download.jetbrains.com/product?code=CL&latest&distribution=
 # Add a binary to the PATH that points to the clion startup script.
 RUN ln -s /opt/clion/bin/clion.sh /usr/bin/clion
 
+COPY deprecated.txt /etc/motd
+
 # Set back to coder user
 USER coder

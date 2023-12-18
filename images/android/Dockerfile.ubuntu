@@ -38,5 +38,7 @@ RUN add-apt-repository ppa:maarten-fonville/android-studio && \
     apt install -y android-studio && \
     ln -s /opt/android-studio/bin/studio.sh /usr/local/bin/studio
 
+COPY deprecated.txt /etc/motd
+
 # Set back to coder user
 USER coder

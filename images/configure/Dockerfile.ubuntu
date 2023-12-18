@@ -1,3 +1,7 @@
 FROM codercom/enterprise-base:ubuntu
 
 COPY [ "configure", "/coder/configure" ]
+
+USER root
+COPY deprecated.txt /etc/motd
+USER coder

@@ -19,5 +19,7 @@ RUN curl -L "https://download.jetbrains.com/product?code=GO&latest&distribution=
 # Add a binary to the PATH that points to the goland startup script.
 RUN ln -s /opt/goland/bin/goland.sh /usr/bin/goland
 
+COPY deprecated.txt /etc/motd
+
 # Set back to coder user
 USER coder
