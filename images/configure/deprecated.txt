@@ -3,5 +3,5 @@
 # Please migrate to codercom/enterprise-base:ubuntu          #
 # or build a custom image FROM it.                           #
 # For more information see:                                  #
-# https://github.com/coder/enterprise-images/issue/238       #
+# https://github.com/coder/enterprise-images/issues/238       #
 ##############################################################
