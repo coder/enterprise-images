@@ -100,9 +100,12 @@ for image in "${IMAGES[@]}"; do
     continue
   fi
 
-  run_trace $DRY_RUN docker build \
+  pushd "$image_dir"
+  run_trace $DRY_RUN docker buildx build \
     "${docker_flags[@]}" \
     "$image_dir" \
     --file="$image_path" \
+    --platform="linux/arm/v7,linux/arm64/v8,linux/amd64" \
     --tag="$image_ref" \| indent
+  popd
 done

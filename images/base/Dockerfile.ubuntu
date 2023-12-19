@@ -1,17 +1,23 @@
-FROM ubuntu:22.04
+FROM --platform=$BUILDPLATFORM tonistiigi/xx:1.1.0 AS xx
+
+FROM --platform=$BUILDPLATFORM ubuntu:22.04
+ARG TARGETPLATFORM
+
+# copy xx scripts to the builder stage
+COPY --from=xx / /
 
 SHELL ["/bin/bash", "-c"]
 
 # Install the Docker apt repository
-RUN apt-get update && \
-    DEBIAN_FRONTEND="noninteractive" apt-get upgrade --yes && \
-    DEBIAN_FRONTEND="noninteractive" apt-get install --yes ca-certificates
+RUN xx-apt-get update && \
+    DEBIAN_FRONTEND="noninteractive" xx-apt-get upgrade --yes && \
+    DEBIAN_FRONTEND="noninteractive" xx-apt-get install --yes ca-certificates
 COPY docker-archive-keyring.gpg /usr/share/keyrings/docker-archive-keyring.gpg
 COPY docker.list /etc/apt/sources.list.d/docker.list
 
 # Install baseline packages
-RUN apt-get update && \
-    DEBIAN_FRONTEND="noninteractive" apt-get install --yes \
+RUN xx-apt-get update && \
+    DEBIAN_FRONTEND="noninteractive" xx-apt-get install --yes \
       bash \
       build-essential \
       ca-certificates \
@@ -35,7 +41,7 @@ RUN apt-get update && \
       rsync && \
     # Install latest Git using their official PPA
     add-apt-repository ppa:git-core/ppa && \
-    DEBIAN_FRONTEND="noninteractive" apt-get install --yes git
+    DEBIAN_FRONTEND="noninteractive" xx-apt-get install --yes git
 
 # Enables Docker starting with systemd
 RUN systemctl enable docker
