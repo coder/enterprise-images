@@ -1,40 +1,18 @@
 # Enterprise Example Images
 
-These docs contain examples and guides for how to setup your images to utilize
-the Multi Editor Support built into Coder Enterprise.
+This repository contains example images for use with [Coder](https://coder.com/docs/v2/latest).
 
-Each directory in [`images/`](./images) contains examples for how to setup your
-images with different IDEs.
-
-See our
-[documentation at our Enterprise Hub](https://enterprise.coder.com/docs/multi-editor)
-for additional information about supported editors and known issues.
-
-## Image Minimums
-
-All of the images provided in this repo include the following utilities to
-ensure they work well with all of Coder Enterprise's features, and to provide a
-solid out-of-the-box developer experience:
-
-- git
-- bash
-- curl & wget
-- htop
-- man
-- vim
-- sudo
-- python3 & pip3
-- gcc & gcc-c++ & make
-
-The one exception is the `minimal` image, which contains only bash, curl, git, and
-sudo.
+- `enterprise-base`: Contains an example image that can be used as a base for
+  other images.
+- `enterprise-minimal`: Contains a minimal image that contians only the required 
+  utilities for a Coder workspace to bootstrap successfully.
 
 ## Images on Docker Hub
 
 Each of these images is also published to Docker Hub under the
-`codercom/enterprise-[name]` repository. For example, `intellij` is available at
-https://hub.docker.com/r/codercom/enterprise-intellij. The tag is taken from the
-file extension of the Dockerfile. For example, `intellij/Dockerfile.ubuntu` is
+`codercom/enterprise-[name]` repository. For example, `base` is available at
+https://hub.docker.com/r/codercom/enterprise-base. The tag is taken from the
+file extension of the Dockerfile. For example, `base/Dockerfile.ubuntu` is
 under the `ubuntu` tag.
 
 ## Contributing
