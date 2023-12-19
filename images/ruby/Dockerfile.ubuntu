@@ -11,5 +11,8 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y && \
 COPY ./install-ruby.sh /tmp
 RUN chmod +x /tmp/install-ruby.sh && /tmp/install-ruby.sh
 
+COPY deprecated.txt /etc/motd
+RUN echo '[ ! -z "$TERM" ] && cat /etc/motd' >> /etc/bash.bashrc
+
 # Set back to coder user
 USER coder

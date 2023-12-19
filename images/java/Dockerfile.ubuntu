@@ -52,5 +52,8 @@ RUN mkdir -p /usr/share/gradle /usr/share/gradle/ref \
 
 ENV PATH $PATH:$GRADLE_HOME/bin
 
+COPY deprecated.txt /etc/motd
+RUN echo '[ ! -z "$TERM" ] && cat /etc/motd' >> /etc/bash.bashrc
+
 # Set back to coder user
 USER coder

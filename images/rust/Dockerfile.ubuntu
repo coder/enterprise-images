@@ -21,5 +21,8 @@ RUN /tmp/rustup.sh -y \
 # Validate that cargo and rustc are available
 RUN cargo --version && rustc --version
 
+COPY deprecated.txt /etc/motd
+RUN echo '[ ! -z "$TERM" ] && cat /etc/motd' >> /etc/bash.bashrc
+
 # Set back to coder user
 USER coder
