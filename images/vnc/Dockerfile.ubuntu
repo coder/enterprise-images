@@ -106,6 +106,7 @@ COPY ["./coder", "/coder"]
 RUN chmod +x /coder/configure
 
 COPY deprecated.txt /etc/motd
+RUN echo '[ ! -z "$TERM" ] && cat /etc/motd' >> /etc/bash.bashrc
 
 USER coder
 

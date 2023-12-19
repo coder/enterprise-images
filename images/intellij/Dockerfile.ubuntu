@@ -19,7 +19,5 @@ RUN curl -L "https://download.jetbrains.com/product?code=IIC&latest&distribution
 # Add a binary to the PATH that points to the intellij startup script.
 RUN ln -s /opt/idea/bin/idea.sh /usr/bin/intellij-idea-community
 
-COPY deprecated.txt /etc/motd
-
 # Set back to coder user
 USER coder

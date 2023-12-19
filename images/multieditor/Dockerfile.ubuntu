@@ -13,6 +13,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y && \
     libgtk-3-0
 
 COPY deprecated.txt /etc/motd
+RUN echo '[ ! -z "$TERM" ] && cat /etc/motd' >> /etc/bash.bashrc
 
 # Set back to coder user
 USER coder

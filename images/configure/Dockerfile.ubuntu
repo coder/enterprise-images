@@ -4,4 +4,5 @@ COPY [ "configure", "/coder/configure" ]
 
 USER root
 COPY deprecated.txt /etc/motd
+RUN echo '[ ! -z "$TERM" ] && cat /etc/motd' >> /etc/bash.bashrc
 USER coder
