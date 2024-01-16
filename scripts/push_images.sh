@@ -7,6 +7,7 @@ source "./lib.sh"
 
 check_dependencies \
   docker
+  depot
 
 source "./images.sh"
 
