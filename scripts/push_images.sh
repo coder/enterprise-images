@@ -101,6 +101,6 @@ for image in "${IMAGES[@]}"; do
     continue
   fi
 
-  build_id=$(cat build.json | jq -r .\[\"depot_{$image}.build\"\].buildID)
-  run_trace $DRY_RUN depot push --project "gb3p8xrshk" --tag "$image_ref" --tag "codercom/enterprise-${image}:latest" "$build_id" 
+ build_id=$(cat build_${image}.json | jq -r .\[\"depot.build\"\].buildID)
+ run_trace $DRY_RUN depot push --project "gb3p8xrshk" --tag "$image_ref" --tag "codercom/enterprise-${image}:latest" "$build_id" 
 done
