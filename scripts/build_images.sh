@@ -100,7 +100,7 @@ for image in "${IMAGES[@]}"; do
     continue
   fi
 
-  run_trace $DRY_RUN depot build --project "gb3p8xrshk" --load \
+  run_trace $DRY_RUN depot build --project "gb3p8xrshk" --load --platform linux/arm64,linux/amd64,linux/arm/v7 \
     "${docker_flags[@]}" \
     "$image_dir" \
     --file="$image_path" \
