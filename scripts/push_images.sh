@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 source "./lib.sh"
 
 check_dependencies \
-  docker
+  docker \
   depot
 
 source "./images.sh"
