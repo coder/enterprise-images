@@ -79,7 +79,7 @@ jobs:
 
       - name: Set up Depot CLI
         uses: depot/setup-action@v1
-      
+
       - name: Build ubuntu images
         run: |
           ${{ github.workspace }}/scripts/build_images.sh \
