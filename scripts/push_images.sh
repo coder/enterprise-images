@@ -100,7 +100,6 @@ for image in "${IMAGES[@]}"; do
     continue
   fi
 
-  run_trace $DRY_RUN docker push \
-    "${docker_flags[@]}" \
-    "$image_ref" \| indent
+  build_id=$(cat build.json | jq -r .\[\"depot.build\"\].buildID)
+  run_trace $DRY_RUN depot push --project "gb3p8xrshk" "$build_id" 
 done
