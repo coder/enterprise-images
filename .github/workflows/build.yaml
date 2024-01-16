@@ -28,6 +28,7 @@ permissions:
   actions: read
   checks: none
   contents: read
+  id-token: write
   deployments: none
   issues: none
   packages: none
@@ -75,6 +76,9 @@ jobs:
       - name: Install Trivy using install script
         run: |
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.37.1
+
+      - name: Set up Depot CLI
+        uses: depot/setup-action@v1
 
       - name: Build ubuntu images
         run: |
