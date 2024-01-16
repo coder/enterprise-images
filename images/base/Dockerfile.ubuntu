@@ -41,7 +41,7 @@ RUN apt-get update && \
 # Enables Docker starting with systemd
 RUN systemctl enable docker
 
-# Create a symlink for standalone docker-compsoe usage
+# Create a symlink for standalone docker-compose usage
 RUN ln -s /usr/libexec/docker/cli-plugins/docker-compose /usr/bin/docker-compose
 
 # Make typing unicode characters in the terminal work.
