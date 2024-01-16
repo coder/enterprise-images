@@ -100,7 +100,7 @@ for image in "${IMAGES[@]}"; do
     continue
   fi
 
-  run_trace $DRY_RUN docker build \
+  run_trace $DRY_RUN depot build --project "gb3p8xrshk" \
     "${docker_flags[@]}" \
     "$image_dir" \
     --file="$image_path" \
