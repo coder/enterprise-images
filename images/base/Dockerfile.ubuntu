@@ -1,15 +1,16 @@
 FROM ubuntu:22.04
 
 SHELL ["/bin/bash", "-c"]
+ENV DEBIAN_FRONTEND noninteractive
 
 # Install the Docker apt repository
 RUN apt-get update && \
-    DEBIAN_FRONTEND="noninteractive" apt-get upgrade --yes && \
-    DEBIAN_FRONTEND="noninteractive" apt-get install --yes ca-certificates
+    apt-get upgrade --yes && \
+    apt-get install --yes ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 COPY docker-archive-keyring.gpg /usr/share/keyrings/docker-archive-keyring.gpg
 COPY docker.list /etc/apt/sources.list.d/docker.list
 
-ENV DEBIAN_FRONTEND noninteractive
 # Install baseline packages
 RUN apt-get update && \
     apt-get install --yes \
