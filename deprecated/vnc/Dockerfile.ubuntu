@@ -67,11 +67,7 @@ RUN ln -s /opt/TurboVNC/bin/* /opt/VirtualGL/bin/* /usr/local/bin/
 # This can be ignored as the VNC server manages this lifecycle.  
 RUN vglserver_config -config +s +f +t
 
-RUN echo 'no-remote-connections\n\
-no-httpd\n\
-no-x11-tcp-connections\n\
-no-pam-sessions\n\
-' > /etc/turbovncserver-security.conf
+COPY turbovncserver-security.conf /etc/turbovncserver-security.conf
 
 ENV VNC_SCRIPTS=$VNC_ROOT_DIR/scripts \
   VNC_SETUP_SCRIPTS=$VNC_ROOT_DIR/setup \
