@@ -31,6 +31,6 @@ updates:
     commit-message:
       prefix: "chore"
     groups:
-      github-actions:
+      npm:
         patterns:
           - "*"
