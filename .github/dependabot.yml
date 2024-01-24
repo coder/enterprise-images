@@ -9,7 +9,7 @@ updates:
       timezone: "America/Chicago"
     commit-message:
       prefix: "chore"
-    group:
+    groups:
       github-actions:
         patterns: "*"
     ignore:
@@ -29,6 +29,6 @@ updates:
       timezone: "America/Chicago"
     commit-message:
       prefix: "chore"
-    group:
+    groups:
       github-actions:
         patterns: "*"
