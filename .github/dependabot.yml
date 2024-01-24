@@ -12,7 +12,7 @@ updates:
     groups:
       github-actions:
         patterns:
-        - "*"
+          - "*"
     ignore:
       # These actions deliver the latest versions by updating the
       # major release tag, so ignore minor/patch updates
@@ -33,4 +33,4 @@ updates:
     groups:
       github-actions:
         patterns:
-        - "*"
+          - "*"
