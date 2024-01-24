@@ -3,11 +3,16 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+      day: "friday"
       time: "06:00"
       timezone: "America/Chicago"
     commit-message:
       prefix: "chore"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
     ignore:
       # These actions deliver the latest versions by updating the
       # major release tag, so ignore minor/patch updates
@@ -19,8 +24,13 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+      day: "friday"
       time: "06:00"
       timezone: "America/Chicago"
     commit-message:
       prefix: "chore"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
