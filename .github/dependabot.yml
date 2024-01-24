@@ -11,7 +11,8 @@ updates:
       prefix: "chore"
     groups:
       github-actions:
-        patterns: "*"
+        patterns:
+        - "*"
     ignore:
       # These actions deliver the latest versions by updating the
       # major release tag, so ignore minor/patch updates
@@ -31,4 +32,5 @@ updates:
       prefix: "chore"
     groups:
       github-actions:
-        patterns: "*"
+        patterns:
+        - "*"
