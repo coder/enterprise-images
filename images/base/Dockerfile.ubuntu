@@ -24,6 +24,7 @@ RUN apt-get update && \
     docker-buildx-plugin \
     docker-compose-plugin \
     htop \
+    jq \
     locales \
     man \
     python3 \
