@@ -39,26 +39,17 @@ permissions:
 
 jobs:
   # Quick checks, running linters, checking formatting, etc
-  quick:
+  quality:
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel previous runs
-        if: github.event_name == 'pull_request'
-        uses: styfle/cancel-workflow-action@0.12.1
-
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Biome
+        uses: biomejs/setup-biome@v2
         with:
-          node-version: 20.x
-
-      - name: Install Node.js modules
-        run: yarn install
-
-      - name: Check formatting
-        run: yarn format:check
+          version: latest
+      - name: Run Biome
+        run: biome ci .
 
   images:
     runs-on: ubuntu-latest
