@@ -57,10 +57,9 @@ jobs:
       fail-fast: false
     name: images/ubuntu
     steps:
-      # TODO uncomment when the action is fixed
-      # - name: Cancel previous runs
-      #   if: github.event_name == 'pull_request'
-      #   uses: styfle/cancel-workflow-action@0.12.1
+      - name: Cancel previous runs
+        if: github.event_name == 'pull_request'
+        uses: styfle/cancel-workflow-action@0.12.1
 
       - name: Checkout
         uses: actions/checkout@v4
