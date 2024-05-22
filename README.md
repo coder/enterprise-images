@@ -4,7 +4,7 @@ This repository contains example images for use with [Coder](https://coder.com/d
 
 - `enterprise-base`: Contains an example image that can be used as a base for
   other images.
-- `enterprise-minimal`: Contains a minimal image that contians only the required 
+- `enterprise-minimal`: Contains a minimal image that contians only the required
   utilities for a Coder workspace to bootstrap successfully.
 
 ## Images on Docker Hub
