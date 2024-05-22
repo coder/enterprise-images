@@ -12,7 +12,7 @@ This repository contains example images for use with [Coder](https://coder.com/d
 Each of these images is also published to Docker Hub under the
 `codercom/enterprise-[name]` repository. For example, `base` is available at
 https://hub.docker.com/r/codercom/enterprise-base. The tag is taken from the
-file extension of the Dockerfile. For example, `base/Dockerfile.ubuntu` is
+filename of the Dockerfile. For example, `base/ubuntu.Dockerfile` is
 under the `ubuntu` tag.
 
 ## Contributing

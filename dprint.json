@@ -1,0 +1,13 @@
+{
+  "markdown": {
+  },
+  "dockerfile": {
+  },
+  "excludes": [
+    "deprecated/*"
+  ],
+  "plugins": [
+    "https://plugins.dprint.dev/markdown-0.17.0.wasm",
+    "https://plugins.dprint.dev/dockerfile-0.3.0.wasm"
+  ]
+}

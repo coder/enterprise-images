@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 USER root
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     bash \
@@ -19,5 +19,5 @@ RUN useradd coder \
     --user-group && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >>/etc/sudoers.d/nopasswd
 
-ENV LANG en_US.UTF-8
+ENV LANG=en_US.UTF-8
 USER coder
