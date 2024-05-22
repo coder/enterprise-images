@@ -49,16 +49,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-
-      - name: Install Node.js modules
-        run: yarn install
-
       - name: Check formatting
-        run: yarn format:check
+        run: ./scripts/fmt.sh
+
+      - name: Check for unstaged files
+        run: ./scripts/check_unstaged.sh
 
   images:
     runs-on: ubuntu-latest
