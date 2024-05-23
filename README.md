@@ -4,7 +4,7 @@ This repository contains example images for use with [Coder](https://coder.com/d
 
 - `enterprise-base`: Contains an example image that can be used as a base for
   other images.
-- `enterprise-minimal`: Contains a minimal image that contians only the required 
+- `enterprise-minimal`: Contains a minimal image that contians only the required
   utilities for a Coder workspace to bootstrap successfully.
 
 ## Images on Docker Hub
@@ -12,7 +12,7 @@ This repository contains example images for use with [Coder](https://coder.com/d
 Each of these images is also published to Docker Hub under the
 `codercom/enterprise-[name]` repository. For example, `base` is available at
 https://hub.docker.com/r/codercom/enterprise-base. The tag is taken from the
-file extension of the Dockerfile. For example, `base/Dockerfile.ubuntu` is
+filename of the Dockerfile. For example, `base/ubuntu.Dockerfile` is
 under the `ubuntu` tag.
 
 ## Contributing

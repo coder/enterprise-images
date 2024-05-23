@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 SHELL ["/bin/bash", "-c"]
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install the Docker apt repository
 RUN apt-get update && \
@@ -37,7 +37,7 @@ RUN apt-get update && \
     vim \
     wget \
     rsync && \
-    # Install latest Git using their official PPA
+# Install latest Git using their official PPA
     add-apt-repository ppa:git-core/ppa && \
     apt-get install --yes git \
     && rm -rf /var/lib/apt/lists/*
@@ -49,7 +49,7 @@ RUN systemctl enable docker
 RUN ln -s /usr/libexec/docker/cli-plugins/docker-compose /usr/bin/docker-compose
 
 # Make typing unicode characters in the terminal work.
-ENV LANG en_US.UTF-8
+ENV LANG=en_US.UTF-8
 
 # Add a user `coder` so that you're not developing as the `root` user
 RUN useradd coder \

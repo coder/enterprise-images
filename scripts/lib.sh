@@ -2,6 +2,16 @@
 
 set -euo pipefail
 
+# cdroot changes directory to the root of the repository.
+cdroot() {
+	cd $(git rev-parse --show-toplevel)
+}
+
+# log prints a message to stderr.
+log() {
+	echo "$*" 1>&2
+}
+
 # Emit a message to stderr and exit.
 #
 # This prints the arguments to stderr before exiting.
@@ -10,11 +20,8 @@ set -euo pipefail
 #   error "Missing flag abc"
 #   program-failure-info | error
 function error() {
-  set +x
-  echo
-  echo "$@" "$(cat)" >&2
-  echo
-  exit 1
+  log "ERROR: $*"
+	exit 1
 }
 
 # Check if dependencies are available.
