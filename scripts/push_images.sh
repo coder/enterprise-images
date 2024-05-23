@@ -88,10 +88,12 @@ if [ $QUIET = true ]; then
   )
 fi
 
+date_str=$(date +%Y%m%d)
 for image in "${IMAGES[@]}"; do
   image_dir="$PROJECT_ROOT/images/$image"
   image_file="${TAG}.Dockerfile"
   image_ref="codercom/enterprise-$image:$TAG"
+  image_ref_date="${image_ref}-${date_str}"
   image_path="$image_dir/$image_file"
 
   if [ ! -f "$image_path" ]; then
@@ -102,6 +104,6 @@ for image in "${IMAGES[@]}"; do
   fi
 
   build_id=$(cat "build_${image}.json" | jq -r .\[\"depot.build\"\].buildID)
-  run_trace $DRY_RUN depot push --project "gb3p8xrshk" --tag "$image_ref" "$build_id"
+  run_trace $DRY_RUN depot push --project "gb3p8xrshk" --tag "$image_ref" --tag "$image_ref_date" "$build_id"
   run_trace $DRY_RUN depot push --project "gb3p8xrshk" --tag "codercom/enterprise-${image}:latest" "$build_id"
 done
