@@ -88,7 +88,6 @@ if [ $QUIET = true ]; then
   )
 fi
 
-date_str=$(date --utc +%Y%m%d)
 for image in "${IMAGES[@]}"; do
   image_dir="$PROJECT_ROOT/images/$image"
   image_file="${TAG}.Dockerfile"
