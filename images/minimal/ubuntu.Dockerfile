@@ -19,7 +19,6 @@ RUN userdel -r ubuntu && \
     useradd coder \
     --create-home \
     --shell=/bin/bash \
-    --groups=docker \
     --uid=1000 \
     --user-group && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >>/etc/sudoers.d/nopasswd
