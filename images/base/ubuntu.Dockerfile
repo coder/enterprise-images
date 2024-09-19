@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:noble
 
 SHELL ["/bin/bash", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive
@@ -51,8 +51,9 @@ RUN ln -s /usr/libexec/docker/cli-plugins/docker-compose /usr/bin/docker-compose
 # Make typing unicode characters in the terminal work.
 ENV LANG=en_US.UTF-8
 
-# Add a user `coder` so that you're not developing as the `root` user
-RUN useradd coder \
+# Remove the `ubuntu` user and add a user `coder` so that you're not developing as the `root` user
+RUN userdel -r ubuntu && \
+    useradd coder \
     --create-home \
     --shell=/bin/bash \
     --groups=docker \
