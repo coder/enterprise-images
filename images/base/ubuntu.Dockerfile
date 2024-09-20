@@ -27,8 +27,7 @@ RUN apt-get update && \
     jq \
     locales \
     man \
-    python3 \
-    python3-pip \
+    pipx \
     software-properties-common \
     sudo \
     systemd \
