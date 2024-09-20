@@ -38,7 +38,7 @@ RUN apt-get update && \
     rsync && \
 # Install latest Git using their official PPA
     add-apt-repository ppa:git-core/ppa && \
-    apt-get install --yes git \
+    apt-get install --yes git && \
     && rm -rf /var/lib/apt/lists/*
 
 # Enables Docker starting with systemd
@@ -61,3 +61,4 @@ RUN userdel -r ubuntu && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >>/etc/sudoers.d/nopasswd
 
 USER coder
+RUN pipx ensurepath # adds user's bin directory to PATH
