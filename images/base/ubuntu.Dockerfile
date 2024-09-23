@@ -13,7 +13,7 @@ COPY docker.list /etc/apt/sources.list.d/docker.list
 
 # Install baseline packages
 RUN apt-get update && \
-    apt-get install --yes \
+    apt-get install --yes --no-install-recommends --no-install-suggests \
     bash \
     build-essential \
     ca-certificates \
@@ -28,6 +28,8 @@ RUN apt-get update && \
     locales \
     man \
     pipx \
+    python3 \
+    python3-pip \
     software-properties-common \
     sudo \
     systemd \
