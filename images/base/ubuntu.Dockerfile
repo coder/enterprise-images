@@ -27,8 +27,7 @@ RUN apt-get update && \
     jq \
     locales \
     man \
-    python3 \
-    python3-pip \
+    pipx \
     software-properties-common \
     sudo \
     systemd \
@@ -62,3 +61,4 @@ RUN userdel -r ubuntu && \
     echo "coder ALL=(ALL) NOPASSWD:ALL" >>/etc/sudoers.d/nopasswd
 
 USER coder
+RUN pipx ensurepath # adds user's bin directory to PATH
