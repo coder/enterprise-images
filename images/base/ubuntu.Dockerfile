@@ -5,8 +5,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install the Docker apt repository
 RUN apt-get update && \
-    apt-get upgrade --yes && \
-    apt-get install --yes ca-certificates && \
+    apt-get upgrade --yes --no-install-recommends --no-install-suggests && \
+    apt-get install --yes --no-install-recommends --no-install-suggests \
+    ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 COPY docker-archive-keyring.gpg /usr/share/keyrings/docker-archive-keyring.gpg
 COPY docker.list /etc/apt/sources.list.d/docker.list
@@ -16,7 +17,6 @@ RUN apt-get update && \
     apt-get install --yes --no-install-recommends --no-install-suggests \
     bash \
     build-essential \
-    ca-certificates \
     containerd.io \
     curl \
     docker-ce \
