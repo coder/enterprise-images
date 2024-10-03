@@ -1,0 +1,71 @@
+FROM --platform=linux/amd64 codercom/enterprise-base:ubuntu
+
+USER root
+
+RUN apt update -y
+
+# R-Base
+RUN <<EOF
+apt install --no-install-recommends gdebi-core nginx software-properties-common dirmngr net-tools -y
+add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+apt install --no-install-recommends r-base -y
+EOF
+
+ARG ARCH=amd64
+ARG BUILD=rstudio-server-2024.04.2-764-${ARCH}.deb
+
+# RStudio Server
+RUN <<EOF
+curl -fsSL -o /tmp/${BUILD} https://s3.amazonaws.com/rstudio-ide-build/server/jammy/${ARCH}/${BUILD}
+echo "y" | gdebi /tmp/${BUILD} -
+EOF
+
+# Make directory for rstudio data in home dir
+RUN mkdir /home/coder/.rstudio && \
+    chown -R coder:coder /home/coder/.rstudio
+
+# Allow ownership of mandatory folders/files
+RUN chown -R coder:coder \
+    /home/coder/.rstudio \
+    /var/run/rstudio-server.pid \
+    /var/lib/rstudio-server \
+    /var/run/rstudio-server \
+    /etc/rstudio
+
+# RStudio Server Config
+COPY --chown=coder:coder <<EOF /etc/rstudio/rserver.conf
+server-user=coder
+server-daemonize=1
+server-data-dir=/home/coder/.rstudio/data
+server-pid-file=/tmp/rstudio-server.pid
+auth-none=1
+www-frame-origin=same
+www-address=127.0.0.1
+www-port=8787
+database-config-file=/etc/rstudio/database.conf
+EOF
+
+# RStudio Database
+COPY --chown=coder:coder <<EOF /etc/rstudio/database.conf
+provider=sqlite
+directory=/home/coder/.rstudio
+EOF
+
+# RStudio DB Launcher
+# Launcher config -- Use TLS
+# If your coder deployment is NOT on tls, you will want to remove this line.
+COPY --chown=coder:coder <<EOF /etc/rstudio/database.conf
+enable-ssl=0
+EOF
+
+# Extras
+RUN <<EOF
+locale-gen en_US.UTF-8
+apt install zsh fish -y
+EOF
+
+# Set back to coder user
+USER coder
+
+# Add RStudio to path
+ENV PATH=/usr/lib/rstudio-server/bin:${PATH}
