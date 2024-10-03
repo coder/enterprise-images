@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 codercom/enterprise-base:ubuntu
+FROM codercom/enterprise-base:ubuntu
 
 USER root
 
