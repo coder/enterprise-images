@@ -1,4 +1,4 @@
-# Enterprise Node
+# Node
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/codercom/enterprise-node?label=codercom%2Fenterprise-node)](https://hub.docker.com/r/codercom/enterprise-node)
 
