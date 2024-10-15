@@ -1,4 +1,4 @@
-# Example Golang
+# Golang
 
 [![DockerPulls](https://img.shields.io/docker/pulls/codercom/enterprise-golang)](https://hub.docker.com/r/codercom/enterprise-golang)
 

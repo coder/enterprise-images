@@ -1,4 +1,4 @@
-# Example Java
+# Java
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/codercom/enterprise-java?label=codercom%2Fenterprise-java)](https://hub.docker.com/r/codercom/enterprise-java)
 
