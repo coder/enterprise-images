@@ -8,4 +8,5 @@ IMAGES=(
   "golang"
   "java"
   "node"
+  "desktop"
 )
