@@ -1,10 +1,11 @@
-FROM codercom/enterprise-base:latest
+FROM codercom/enterprise-minimal:latest
 
 USER root
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
-    apt-get install -y --no-install-recommends --no-install-suggests dbus-x11 openssl ssl-cert libdatetime-perl xfce4 xfce4-goodies && \
-    rm /run/reboot-required* || true
+    apt-get install -y --no-install-recommends --no-install-suggests dbus-x11 libdatetime-perl openssl ssl-cert xfce4 xfce4-goodies && \
+    rm /run/reboot-required* || true && \
+    rm -rf /var/lib/apt/lists/*
 
 # Setting the required environment variables
 ARG USER=coder
